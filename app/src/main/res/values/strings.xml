@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">NoteApp</string>
+    <string name="action_search">buscar</string>
+    <string name="action_settings1">Nueva lista</string>
+    <string name="action_settings2">Nueva nota</string>
+</resources>

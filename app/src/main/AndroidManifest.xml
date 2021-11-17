@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteApp">
-        <activity android:name=".NuevaNotaActivity"></activity>
+        <activity
+            android:name=".CrearNotaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotesListActivity"
+            android:exported="false" />
+        <activity android:name=".NuevaNotaActivity" />
         <activity android:name=".NuevaListaActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".HomeActivity" />

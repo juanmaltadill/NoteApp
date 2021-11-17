@@ -30,7 +30,9 @@ public class SignUpActivity extends AppCompatActivity {
     private String pass;
     private String phone;
     private String categoria;
+    private String note;
     private Gson gson;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,10 +99,16 @@ public class SignUpActivity extends AppCompatActivity {
         dbRef.child("users").child(userId).child("name").setValue(name);
         dbRef.child("users").child(userId).child("phone").setValue(phone);
         Categoria cat = new Categoria();
+        Note nota = new Note();
         cat.setNombre("Sin categoria");
+        nota.setTitulo("Nota vacia");
+        nota.setCategoria(cat.getNombre());
         gson = new Gson();
         categoria = gson.toJson(cat);
+        note = gson.toJson(nota);
         System.out.println(cat.nombre);
+        System.out.println("La longitud de note es "+note.length());
         dbRef.child("users").child(userId).child("categorias").setValue(categoria);
+        dbRef.child("users").child(userId).child("notas").setValue(note);
     }
 }

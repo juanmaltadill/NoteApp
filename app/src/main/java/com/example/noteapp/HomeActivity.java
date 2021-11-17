@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +30,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -83,11 +86,10 @@ public class HomeActivity extends AppCompatActivity {
                     dbRef.child("users").child(userId).child("categorias").setValue(enviar);
                     System.out.println("Tamaño copiacategorias" + copiaCategorias.size());
                 }
+                Collections.reverse(copiaCategorias);
                 createView(copiaCategorias);
             }
         });
-
-
     }
 
     private void createView(ArrayList<Categoria> categorias){
@@ -96,7 +98,9 @@ public class HomeActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                TextView et1 = view.findViewById(R.id.nombreCategoria);
+                String categoria = et1.getText().toString();
+                initNotesList(categoria);
             }
         });
     }
@@ -122,6 +126,11 @@ public class HomeActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    private void initNotesList(String categoria){
+        Intent intent = new Intent(this, NotesListActivity.class);
+        intent.putExtra("categoria", categoria);
+        startActivity(intent);
     }
     private void initNewList(){
         Intent intent = new Intent(this, NuevaListaActivity.class);

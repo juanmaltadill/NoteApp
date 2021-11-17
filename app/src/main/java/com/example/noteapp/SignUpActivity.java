@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.NoteApp.MESSAGE";
@@ -27,6 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
     private String email;
     private String pass;
     private String phone;
+    private String categoria;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +48,8 @@ public class SignUpActivity extends AppCompatActivity {
                         email = mailEt.getText().toString();
                         EditText passEt = findViewById(R.id.passEditText);
                         pass = passEt.getText().toString();
-                        EditText phoneEt = findViewById(R.id.nameEditText);
-                        name = nameEt.getText().toString();
+                        EditText phoneEt = findViewById(R.id.phoneEditText);
+                        phone = phoneEt.getText().toString();
                         createAccount(email, pass);
                         break;
                 }
@@ -55,7 +59,6 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(onClickListener);
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance("https://noteapp-16399-default-rtdb.europe-west1.firebasedatabase.app").getReference();
-        email = auth.getCurrentUser().getEmail();
     }
     private void createAccount(String email, String password){
         System.out.println(email + password);
@@ -67,8 +70,8 @@ public class SignUpActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             System.out.println("createUserWithEmail:success");
                             FirebaseUser user = auth.getCurrentUser();
-                            writeNewUser(auth.getCurrentUser().getUid().toString(), name, email);
-                            initHome(name, email, password, phone);
+                            writeNewUser(auth.getCurrentUser().getUid().toString(), name, email, phone);
+                            initAuth();
                         } else {
                             // If sign in fails, display a message to the user.
                             System.out.println("createUserWithEmail:failure");
@@ -84,19 +87,20 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void initHome(String name, String email, String pass, String phone){
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, name);
-        intent.putExtra(EXTRA_MESSAGE, email);
-        intent.putExtra(EXTRA_MESSAGE, pass);
-        intent.putExtra(EXTRA_MESSAGE, phone);
+    private void initAuth(){
+        Intent intent = new Intent(this, AuthActivity.class);
         startActivity(intent);
     }
-    public void writeNewUser(String userId, String name, String email) {
-        System.out.println(auth.getCurrentUser().getEmail().toString());
+    public void writeNewUser(String userId, String name, String email, String phone) {
         User user = new User(name, email);
-        dbRef.child("users").child(userId).setValue(user);
-        dbRef.child("users").child("email").setValue(email);
-        dbRef.child("users").child("name").setValue(name);
+        dbRef.child("users").child(userId).child("email").setValue(email);
+        dbRef.child("users").child(userId).child("name").setValue(name);
+        dbRef.child("users").child(userId).child("phone").setValue(phone);
+        Categoria cat = new Categoria();
+        cat.setNombre("Sin categoria");
+        gson = new Gson();
+        categoria = gson.toJson(cat);
+        System.out.println(cat.nombre);
+        dbRef.child("users").child(userId).child("categorias").setValue(categoria);
     }
 }

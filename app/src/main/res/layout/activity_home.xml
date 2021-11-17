@@ -14,7 +14,9 @@
         <ListView
             android:id="@+id/categoriesListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/userTextView"

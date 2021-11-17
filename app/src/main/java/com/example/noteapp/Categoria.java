@@ -13,7 +13,9 @@ public class Categoria {
 
     }
     public Categoria(String nombre, Icon icon, ArrayList<Note> notes){
-
+        this.nombre = nombre;
+        this.icon = icon;
+        this.notes = notes;
     }
 
     public String getNombre() {

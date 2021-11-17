@@ -11,13 +11,17 @@ public class Note {
     boolean vence;
     Date fechaVencimiento;
     Icon icon;
-    String tipo;
+    String categoria;
 
     public Note(){
 
     }
-    public Note(String titulo, String contenido, boolean vence, Date fechaVencimiento, String tipo){
-
+    public Note(String titulo, String contenido, boolean vence, Date fechaVencimiento, String categoria){
+        this.titulo = titulo;
+        this.contenido = contenido;
+        this.vence = vence;
+        this.fechaVencimiento = fechaVencimiento;
+        this.categoria = categoria;
     }
 
     public int getId() {
@@ -68,11 +72,11 @@ public class Note {
         this.icon = icon;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCategoriao() {
+        return categoria;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCategoria(String tipo) {
+        this.categoria = tipo;
     }
 }

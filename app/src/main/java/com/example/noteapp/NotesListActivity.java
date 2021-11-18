@@ -3,6 +3,7 @@ package com.example.noteapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -84,8 +85,12 @@ public class NotesListActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                createNewNote();
             }
         });
+    }
+    private void createNewNote(){
+        Intent intent = new Intent(this, NuevaNotaActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.noteapp;
+package com.juanmaltadill.noteapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 

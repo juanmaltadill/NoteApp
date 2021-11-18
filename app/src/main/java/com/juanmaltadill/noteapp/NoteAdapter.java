@@ -1,4 +1,4 @@
-package com.example.noteapp;
+package com.juanmaltadill.noteapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class CategoryAdapter extends ArrayAdapter<Categoria> {
+public class NoteAdapter extends ArrayAdapter<Note> {
 
     private int resourceLayout;
     private Context mContext;
@@ -18,7 +18,7 @@ public class CategoryAdapter extends ArrayAdapter<Categoria> {
         return mContext;
     }
 
-    public CategoryAdapter(Context context, int resource, List<Categoria> items) {
+    public NoteAdapter(Context context, int resource, List<Note> items) {
         super(context, resource, items);
         this.resourceLayout = resource;
         this.mContext = context;
@@ -34,18 +34,18 @@ public class CategoryAdapter extends ArrayAdapter<Categoria> {
             v = vi.inflate(resourceLayout, null);
         }
 
-        Categoria p = getItem(position);
+        Note p = getItem(position);
 
         if (p != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.id);
-            TextView tt2 = (TextView) v.findViewById(R.id.nombreCategoria);
+            TextView tt2 = (TextView) v.findViewById(R.id.tituloNota);
 
             /*if (tt1 != null) {
                 tt1.setText(p.getIcon());
             }*/
 
             if (tt2 != null) {
-                tt2.setText(p.getNombre().toString());
+                tt2.setText(p.getTitulo().toString());
             }
         }
 

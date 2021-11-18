@@ -1,4 +1,4 @@
-package com.example.noteapp;
+package com.juanmaltadill.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +62,9 @@ public class NuevaNotaActivity extends AppCompatActivity {
                  if(b){
                     et3.setVisibility(View.VISIBLE);
                     tv1.setVisibility(View.VISIBLE);
+                 }if(!b){
+                     tv1.setVisibility(View.INVISIBLE);
+                     et3.setVisibility(View.INVISIBLE);
                  }
              }
          });

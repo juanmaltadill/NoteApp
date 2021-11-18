@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.noteapp">
+    package="com.juanmaltadill.noteapp">
 
     <application
         android:allowBackup="true"
@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteApp">
         <activity
-            android:name=".CrearNotaActivity"
+            android:name="com.juanmaltadill.noteapp.CrearNotaActivity"
             android:exported="false" />
         <activity
-            android:name=".NotesListActivity"
+            android:name="com.juanmaltadill.noteapp.NotesListActivity"
             android:exported="false" />
-        <activity android:name=".NuevaNotaActivity" />
-        <activity android:name=".NuevaListaActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".AuthActivity">
+        <activity android:name="com.juanmaltadill.noteapp.NuevaNotaActivity" />
+        <activity android:name="com.juanmaltadill.noteapp.NuevaListaActivity" />
+        <activity android:name="com.juanmaltadill.noteapp.SignUpActivity" />
+        <activity android:name="com.juanmaltadill.noteapp.HomeActivity" />
+        <activity android:name="com.juanmaltadill.noteapp.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

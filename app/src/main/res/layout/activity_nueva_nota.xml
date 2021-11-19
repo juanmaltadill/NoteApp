@@ -54,15 +54,20 @@
             android:id="@+id/fechaNuevaNotaTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Fecha y hora"
             android:visibility="invisible" />
 
-        <EditText
-            android:id="@+id/fechaNuevaNotaEt"
+        <TextView
+            android:id="@+id/fechaHoraTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/seleccionarFechaBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
             android:visibility="invisible" />
 
         <TextView

@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteApp">
         <activity
-            android:name="com.juanmaltadill.noteapp.CrearNotaActivity"
+            android:name=".SelectDateAndHourActivity"
             android:exported="false" />
         <activity
-            android:name="com.juanmaltadill.noteapp.NotesListActivity"
+            android:name=".CrearNotaActivity"
             android:exported="false" />
-        <activity android:name="com.juanmaltadill.noteapp.NuevaNotaActivity" />
-        <activity android:name="com.juanmaltadill.noteapp.NuevaListaActivity" />
-        <activity android:name="com.juanmaltadill.noteapp.SignUpActivity" />
-        <activity android:name="com.juanmaltadill.noteapp.HomeActivity" />
-        <activity android:name="com.juanmaltadill.noteapp.AuthActivity">
+        <activity
+            android:name=".NotesListActivity"
+            android:exported="false" />
+        <activity android:name=".NuevaNotaActivity" />
+        <activity android:name=".NuevaListaActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

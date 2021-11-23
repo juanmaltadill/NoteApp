@@ -1,8 +1,11 @@
 package com.juanmaltadill.noteapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,6 +91,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void createView(ArrayList<Categoria> categorias){
         CategoryAdapter adapter = new CategoryAdapter(HomeActivity.this, R.layout.categoryadapter_layout, copiaCategorias);
+
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -97,6 +101,14 @@ public class HomeActivity extends AppCompatActivity {
                 initNotesList(categoria);
             }
         });
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+                createDialog();
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -133,6 +145,27 @@ public class HomeActivity extends AppCompatActivity {
     private void initNewNote(){
         Intent intent = new Intent(this, NuevaNotaActivity.class);
         startActivity(intent);
+    }
+
+    private void createDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Si borras la categoría borrarás todas las notas que contiene. ¿Estás seguro?");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }

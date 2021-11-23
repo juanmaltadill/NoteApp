@@ -1,8 +1,10 @@
 package com.juanmaltadill.noteapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,9 +90,36 @@ public class NotesListActivity extends AppCompatActivity {
                 createNewNote();
             }
         });
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+                createDialog();
+                return true;
+            }
+        });
     }
     private void createNewNote(){
         Intent intent = new Intent(this, NuevaNotaActivity.class);
         startActivity(intent);
+    }
+    private void createDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Si borras la categoría borrarás todas las notas que contiene. ¿Estás seguro?");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

@@ -5,7 +5,8 @@
 
     <TableRow android:layout_width="fill_parent"
         android:id="@+id/TableRow01"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:longClickable="true">
 
         <TextView android:textColor="#FFFFFF"
             android:id="@+id/id"

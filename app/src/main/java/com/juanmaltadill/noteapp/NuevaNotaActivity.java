@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +33,7 @@ import com.google.gson.reflect.TypeToken;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class NuevaNotaActivity extends AppCompatActivity {
@@ -156,4 +160,18 @@ public class NuevaNotaActivity extends AppCompatActivity {
             }
         }
     }
+
+//    public void crearAlarma(){
+//        AlarmManager alarmMgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+//        alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 02);
+//        calendar.set(Calendar.MINUTE, 00);
+//
+//        alarmMgr.set
+//        alarmMgr.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis()/1000,
+//                AlarmManager.INTERVAL_DAY, alarmIntent);
+//    }
 }

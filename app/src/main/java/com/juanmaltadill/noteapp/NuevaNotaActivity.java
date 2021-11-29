@@ -34,6 +34,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 public class NuevaNotaActivity extends AppCompatActivity {
@@ -54,6 +55,7 @@ public class NuevaNotaActivity extends AppCompatActivity {
     private String save;
     private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
     private ArrayList<String> listaCategorias = new ArrayList<String>();
+    private ArrayList<Note> copiaNotas = new ArrayList<Note>();
     private TextView tv2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +91,8 @@ public class NuevaNotaActivity extends AppCompatActivity {
                 else {
                     if(task.getResult().getValue()!=null){
                         save = task.getResult().getValue().toString();
-                        System.out.println("La longitud de save es "+save.length());
-                        if(save.length()<48){
-                            categorias.add(gson.fromJson(save, Categoria.class));
-                        }else{
-                            categorias.addAll(gson.fromJson(save, new TypeToken<ArrayList<Categoria>>(){}.getType()));
-                        }
+                        categorias.addAll(gson.fromJson(save, new TypeToken<ArrayList<Categoria>>(){}.getType()));
+
 
                         for(int i=0; i<categorias.size(); i++){
                             listaCategorias.add(categorias.get(i).getNombre());
@@ -129,7 +127,9 @@ public class NuevaNotaActivity extends AppCompatActivity {
                 }
                 cat = categoria.getSelectedItem().toString();
                 nota = new Note(titulo, contenido, vence, fecha, cat);
-
+                String json = gson.toJson(nota);
+                initNotesList(json, cat);
+                finish();
             }
         });
     }
@@ -139,9 +139,10 @@ public class NuevaNotaActivity extends AppCompatActivity {
         spinner.setAdapter(adaptador);
     }
 
-    public void initNotesList(String json){
+    public void initNotesList(String json, String categoria){
         Intent intent = new Intent(this, NotesListActivity.class);
         intent.putExtra("nota", json);
+        intent.putExtra("categoria", categoria);
         startActivity(intent);
     }
     public void initSeleccionarFecha(){

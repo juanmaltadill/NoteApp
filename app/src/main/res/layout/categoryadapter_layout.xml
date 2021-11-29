@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content" android:orientation="vertical"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
 
-    <TableRow android:layout_width="fill_parent"
+    <TableRow
         android:id="@+id/TableRow01"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:longClickable="true">
 
-        <TextView android:textColor="#FFFFFF"
+        <TextView
             android:id="@+id/id"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="id" android:textStyle="bold"
-            android:gravity="left"
             android:layout_weight="1"
-            android:typeface="monospace"
-            android:height="40sp" />
+            android:height="1sp"
+            android:gravity="left"
+            android:text="id"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:typeface="monospace" />
     </TableRow>
 
-    <TableRow android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/nombreCategoria"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="categoryId"
             android:layout_weight="1"
-            android:height="20sp" />
+            android:height="50sp"
+            android:gravity="center"
+            android:text="categoryId"
+            android:textSize="20sp" />
     </TableRow>
 
 </TableLayout>

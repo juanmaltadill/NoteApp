@@ -1,6 +1,7 @@
 package com.juanmaltadill.noteapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,6 +27,8 @@ public class AuthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.hide();
         mAuth = FirebaseAuth.getInstance();
         Button signUp = findViewById(R.id.signUpButton);
         mail = findViewById(R.id.emailEditText);

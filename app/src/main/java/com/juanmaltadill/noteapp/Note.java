@@ -72,7 +72,7 @@ public class Note {
         this.icon = icon;
     }
 
-    public String getCategoriao() {
+    public String getCategoria() {
         return categoria;
     }
 

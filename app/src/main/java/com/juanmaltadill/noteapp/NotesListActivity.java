@@ -8,9 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +40,7 @@ public class NotesListActivity extends AppCompatActivity {
     private String copia;
     private String nota;
     private ArrayList<Note> copiaNotas = new ArrayList<Note>();
+    private ArrayList<Note> viewNotas = new ArrayList<Note>();
     private Note nuevaNota;
     private String enviar;
 
@@ -43,11 +48,13 @@ public class NotesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
+        this.setTitle("Notas");
         listview = (ListView) findViewById(R.id.notesListView);
         categoria = getIntent().getExtras().getString("categoria");
+        System.out.println("La categoria extra es "+categoria);
         nota = getIntent().getExtras().getString("nota");
+        System.out.println("La nota extra es "+nota);
         userId = auth.getUid();
-        System.out.println("El id del usuario es "+userId);
         gson = new Gson();
         dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef.child("users").child(userId).child("notas").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -59,30 +66,42 @@ public class NotesListActivity extends AppCompatActivity {
                 else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     copia = String.valueOf(task.getResult().getValue());
-                    System.out.println("Tamaño copiacategorias " + copiaNotas.size());
-                    System.out.println(copia.length());
+                    System.out.println("La variable copia es "+copia);
                     if(copia.length()<73){
                         copiaNotas.add(gson.fromJson(copia, Note.class));
                     }else{
                         copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Note>>(){}.getType()));
                     }
-
                     if(nota != null){
-                        nuevaNota = gson.fromJson(copia, Note.class);
+                        System.out.println("La nota creada es "+nota);
+                        nuevaNota = gson.fromJson(nota, Note.class);
                         copiaNotas.add(nuevaNota);
                     }
+                    for(int i=0; i<copiaNotas.size(); i++){
+                        System.out.println("Indice "+i+" de CopiaNotas = "+copiaNotas.get(i));
+                    }
+
+                    System.out.println("Tamaño CopiaNotas "+copiaNotas.size());
                     enviar = gson.toJson(copiaNotas);
+                    System.out.println("El string de notas a enviar es "+ enviar);
                     dbRef.child("users").child(userId).child("notas").setValue(enviar);
-                    System.out.println("Tamaño copiacategorias" + copiaNotas.size());
                 }
-                Collections.reverse(copiaNotas);
-                createView(copiaNotas);
+                for(int i=0; i<copiaNotas.size(); i++){
+                    boolean comprobar = copiaNotas.get(i).categoria.equals(categoria);
+                    System.out.println("Categoria copianotas "+copiaNotas.get(i).categoria + " Categoria extra "+categoria);
+                    System.out.println("Comprobacion " + comprobar);
+                    if(copiaNotas.get(i).categoria.equals(categoria)){
+                        viewNotas.add(copiaNotas.get(i));
+                    }
+                }
+                Collections.reverse(viewNotas);
+                createView(viewNotas);
             }
         });
 
     }
     private void createView(ArrayList<Note> notas){
-        NoteAdapter adapter = new NoteAdapter(NotesListActivity.this, R.layout.noteadapter_layout, copiaNotas);
+        NoteAdapter adapter = new NoteAdapter(NotesListActivity.this, R.layout.noteadapter_layout, notas);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,8 +111,10 @@ public class NotesListActivity extends AppCompatActivity {
         });
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-                createDialog();
+            public boolean onItemLongClick(AdapterView<?> arg0, View view, int i, long l) {
+                TextView et1 = findViewById(R.id.tituloNota);
+                String nota = et1.getText().toString();
+                createDialog(nota);
                 return true;
             }
         });
@@ -102,13 +123,22 @@ public class NotesListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NuevaNotaActivity.class);
         startActivity(intent);
     }
-    private void createDialog(){
+    private void createDialog(String nota){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Si borras la categoría borrarás todas las notas que contiene. ¿Estás seguro?");
+        builder.setMessage("¿Estás seguro de que deseas borrar la nota?");
         builder.setCancelable(true);
 
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                for(int i=0; i<copiaNotas.size(); i++){
+                    if(copiaNotas.get(i).titulo == nota){
+                        copiaNotas.remove(i);
+                    }
+                }
+                enviar = gson.toJson(copiaNotas);
+                dbRef.child("users").child(userId).child("notas").setValue(enviar);
+
+                createView(copiaNotas);
                 dialog.cancel();
             }
         });
@@ -122,4 +152,36 @@ public class NotesListActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings1:
+                initNewList();
+                finish();
+                return true;
+            case R.id.action_settings2:
+                initNewNote();
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    private void initNewList(){
+        Intent intent = new Intent(this, NuevaListaActivity.class);
+        startActivity(intent);
+    }
+    private void initNewNote(){
+        Intent intent = new Intent(this, NuevaNotaActivity.class);
+        startActivity(intent);
+    }
+
 }

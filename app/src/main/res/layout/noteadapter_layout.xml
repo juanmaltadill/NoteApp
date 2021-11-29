@@ -21,7 +21,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:height="40sp"
+                android:height="1sp"
                 android:gravity="left"
                 android:text="id"
                 android:textColor="#FFFFFF"
@@ -30,14 +30,16 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tituloNota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_width="398dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="20sp" />
         </TableRow>
 
     </TableLayout>

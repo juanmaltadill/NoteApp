@@ -94,6 +94,27 @@ public class HomeActivity extends AppCompatActivity {
                 createView(copiaCategorias);
             }
         });
+        dbRef.child("users").child(userId).child("notas").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                while(!task.isComplete()){
+                    waitingDialog();
+                    task.isComplete();
+                }
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                    copia = String.valueOf(task.getResult().getValue());
+                    if(copia.startsWith("{")){
+                        copiaNotas.add(gson.fromJson(copia, Note.class));
+                    }else{
+                        copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Note>>(){}.getType()));
+                    }
+                }
+            }
+        });
     }
 
     private void createView(ArrayList<Categoria> categorias){
@@ -102,16 +123,16 @@ public class HomeActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView et1 = findViewById(R.id.nombreCategoria);
-                String categoria = et1.getText().toString();
+                String categoria = copiaCategorias.get(i).nombre;
+                System.out.println("El texto obtenido del tv es "+categoria);
                 initNotesList(categoria);
             }
         });
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View view, int i, long l) {
-                TextView et1 = findViewById(R.id.nombreCategoria);
-                String categoria = et1.getText().toString();
+
+                String categoria = copiaCategorias.get(i).nombre;
                 createDialog(categoria);
                 return true;
             }
@@ -142,6 +163,7 @@ public class HomeActivity extends AppCompatActivity {
     private void initNotesList(String categoria){
         Intent intent = new Intent(this, NotesListActivity.class);
         intent.putExtra("categoria", categoria);
+        System.out.println("La categoria enviada es "+categoria);
         startActivity(intent);
     }
     private void initNewList(){
@@ -160,28 +182,25 @@ public class HomeActivity extends AppCompatActivity {
 
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-//                    for(int i=0; i<copiaNotas.size(); i++){
-//                        if(copiaNotas.get(i).categoria == categoria){
-//                            copiaNotas.remove(i);
-//                        }
-//                    }
-//                    enviar = gson.toJson(copiaNotas);
-//                    dbRef.child("users").child(userId).child("notas").setValue(enviar);
-//                    System.out.println("Tamaño copianotas" + copiaNotas.size());
-//
-//                    createView(copiaCategorias);
-
-                    for(int i=0; i<copiaCategorias.size(); i++){
-                        if(copiaCategorias.get(i).nombre == categoria){
-                            copiaCategorias.remove(i);
-                        }
+                for(int i=0; i<copiaNotas.size();i++){
+                    if(copiaNotas.get(i).getCategoria() == categoria){
+                        copiaNotas.remove(i);
                     }
-                    enviar = gson.toJson(copiaCategorias);
-                    dbRef.child("users").child(userId).child("categorias").setValue(enviar);
-                    System.out.println("Tamaño copiaCategorias" + copiaCategorias.size());
+                }
+                enviar = gson.toJson(copiaNotas);
+                System.out.println("Desde el HomeActivity, las notas a enviar despues de eliminar categoria: "+enviar);
+                dbRef.child("users").child(userId).child("notas").setValue(enviar);
 
-                    createView(copiaCategorias);
-                    dialog.cancel();
+                for(int i=0; i<copiaCategorias.size(); i++){
+                    if(copiaCategorias.get(i).nombre == categoria){
+                        copiaCategorias.remove(i);
+                    }
+                }
+                enviar = gson.toJson(copiaCategorias);
+                dbRef.child("users").child(userId).child("categorias").setValue(enviar);
+
+                createView(copiaCategorias);
+                dialog.cancel();
             }
         });
 

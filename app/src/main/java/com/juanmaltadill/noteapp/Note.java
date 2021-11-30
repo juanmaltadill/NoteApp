@@ -2,6 +2,8 @@ package com.juanmaltadill.noteapp;
 
 import android.graphics.drawable.Icon;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Note {

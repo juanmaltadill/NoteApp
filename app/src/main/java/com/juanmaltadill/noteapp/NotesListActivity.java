@@ -50,8 +50,6 @@ public class NotesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes_list);
         this.setTitle("Notas");
         listview = (ListView) findViewById(R.id.notesListView);
-        categoria = getIntent().getExtras().getString("categoria");
-        System.out.println("La categoria extra es "+categoria);
         nota = getIntent().getExtras().getString("nota");
         System.out.println("La nota extra es "+nota);
         userId = auth.getUid();
@@ -64,6 +62,8 @@ public class NotesListActivity extends AppCompatActivity {
                     Log.e("firebase", "Error getting data", task.getException());
                 }
                 else {
+                    categoria = getIntent().getExtras().getString("categoria");
+                    System.out.println("La categoria extra es "+categoria);
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     copia = String.valueOf(task.getResult().getValue());
                     System.out.println("La variable copia es "+copia);
@@ -112,8 +112,8 @@ public class NotesListActivity extends AppCompatActivity {
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View view, int i, long l) {
-                TextView et1 = findViewById(R.id.tituloNota);
-                String nota = et1.getText().toString();
+                String nota = viewNotas.get(i).getTitulo();
+                System.out.println("OnItemLongClick de notas "+nota);
                 createDialog(nota);
                 return true;
             }
@@ -137,8 +137,16 @@ public class NotesListActivity extends AppCompatActivity {
                 }
                 enviar = gson.toJson(copiaNotas);
                 dbRef.child("users").child(userId).child("notas").setValue(enviar);
-
-                createView(copiaNotas);
+                for(int i=0; i<viewNotas.size(); i++){
+                    if(viewNotas.get(i).titulo == nota){
+                        viewNotas.remove(i);
+                    }
+                }
+                for(int i=0; i<viewNotas.size(); i++){
+                    System.out.println("Contenido viewNotas: "+i+" "+viewNotas.get(i).getTitulo());
+                }
+                Collections.reverse(viewNotas);
+                createView(viewNotas);
                 dialog.cancel();
             }
         });

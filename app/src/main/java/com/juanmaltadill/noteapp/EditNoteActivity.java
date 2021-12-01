@@ -6,10 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,15 +29,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.w3c.dom.Text;
-
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 
-public class NuevaNotaActivity extends AppCompatActivity {
+public class EditNoteActivity extends AppCompatActivity {
     private final int STATIC_INTEGER_VALUE = 1;
     private String titulo;
     private String contenido;
@@ -59,33 +52,48 @@ public class NuevaNotaActivity extends AppCompatActivity {
     private ArrayList<String> listaCategorias = new ArrayList<String>();
     private ArrayList<Note> copiaNotas = new ArrayList<Note>();
     private TextView tv2;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
-    boolean flag;
+    private EditText et1;
+    private EditText et2;
+    private Button btn1;
+    private TextView tv1;
+    private Button button;
+    private Switch check;
+    private Spinner categoria;
+    private String copiaCategoria;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nueva_nota);
-        EditText et1 = findViewById(R.id.tituloNuevaNotaEt);
-        EditText et2 = findViewById(R.id.contenidoNuevaNotaEt);
-        Button btn1 = findViewById(R.id.seleccionarFechaBtn);
-        TextView tv1 = findViewById(R.id.fechaNuevaNotaTv);
-        tv2 = findViewById(R.id.fechaHoraTv);
-        Button button = findViewById(R.id.crearNuevaNotaBtn);
-        Switch check = findViewById(R.id.venceNuevaNotaSwitch);
-        Spinner categoria = findViewById(R.id.categoriaNuevaNotaSpinner);
+        setContentView(R.layout.activity_edit_note);
+        et1 = findViewById(R.id.editarTituloNotaEt);
+        et2 = findViewById(R.id.editarContenidoNotaEt);
+        btn1 = findViewById(R.id.editarFechaBtn);
+        tv1 = findViewById(R.id.editarFechaNotaTv);
+        tv2 = findViewById(R.id.editarfechaHoraTv);
+        button = findViewById(R.id.editarNotaBtn);
+        check = findViewById(R.id.editarVenceNotaSwitch);
+        categoria = findViewById(R.id.editarCategoriaNotaSpinner);
+        String extra = getIntent().getExtras().getString("nota");
+        copiaCategoria = getIntent().getExtras().getString("categoria");
         userId = auth.getUid();
-        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-             @Override
-             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                 if(b){
-                    btn1.setVisibility(View.VISIBLE);
-                    tv1.setVisibility(View.VISIBLE);
-                 }if(!b){
-                     tv1.setVisibility(View.INVISIBLE);
-                     btn1.setVisibility(View.INVISIBLE);
-                 }
-             }
-         });
+        nota = gson.fromJson(extra, Note.class);
+        System.out.println(extra);
+        et1.setText(nota.getTitulo());
+        System.out.println("El título de la nota a editar es: "+nota.getTitulo());
+        et2.setText(nota.getContenido());
+        check.setChecked(nota.vence);
+        if(nota.vence){
+            btn1.setVisibility(View.VISIBLE);
+            tv1.setVisibility(View.VISIBLE);
+        }else{
+            tv1.setVisibility(View.INVISIBLE);
+            btn1.setVisibility(View.INVISIBLE);
+        }
+        if(nota.vence){
+            tv1.setText(nota.getFechaVencimiento().toString());
+        }
+
+
         dbRef.child("users").child(userId).child("categorias").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -96,8 +104,6 @@ public class NuevaNotaActivity extends AppCompatActivity {
                     if(task.getResult().getValue()!=null){
                         save = task.getResult().getValue().toString();
                         categorias.addAll(gson.fromJson(save, new TypeToken<ArrayList<Categoria>>(){}.getType()));
-
-
                         for(int i=0; i<categorias.size(); i++){
                             listaCategorias.add(categorias.get(i).getNombre());
                         }
@@ -126,7 +132,7 @@ public class NuevaNotaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switch(view.getId()){
-                    case R.id.seleccionarFechaBtn:
+                    case R.id.editarFechaBtn:
                         initSeleccionarFecha();
                         break;
                 }
@@ -136,44 +142,63 @@ public class NuevaNotaActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                flag = true;
+                titulo = et1.getText().toString();
+                contenido = et2.getText().toString();
+                vence = check.isChecked();
+                if(vence){
+                    fecha = tv1.getText().toString();
+                }else{
+                    fecha = null;
+                }
+                cat = categoria.getSelectedItem().toString();
+                Note comparar = gson.fromJson(extra, Note.class);
                 for(int i=0; i<copiaNotas.size(); i++){
-                    if(copiaNotas.get(i).getTitulo().equals(et1.getText().toString())&&copiaNotas.get(i).getCategoria().equals(categoria.getSelectedItem().toString())){
-                        flag = false;
-                        Toast toast=Toast.makeText(getApplicationContext(),"Ya existe una nota con ese título en esta categoría",Toast.LENGTH_LONG);
-                        toast.show();
+                    System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
+                    if(copiaNotas.get(i).getTitulo().equals(comparar.getTitulo())){
+                        System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
+                        copiaNotas.get(i).setTitulo(titulo);
+                        copiaNotas.get(i).setContenido(contenido) ;
+                        copiaNotas.get(i).setVence(vence);
+                        if(vence){
+                            copiaNotas.get(i).setFechaVencimiento(fecha);
+                        }else{
+                            copiaNotas.get(i).setFechaVencimiento(null);
+                        }
+                        copiaNotas.get(i).setCategoria(cat);
+                        System.out.println("CopiaNotas editnote nuevo titulo "+copiaNotas.get(i).getTitulo());
                     }
                 }
-                if(flag){
-                    titulo = et1.getText().toString();
-                    contenido = et2.getText().toString();
-                    vence = check.isChecked();
-                    if(vence){
-                        fecha = tv2.getText().toString();
-                    }else{
-                        fecha = null;
-                    }
-                    cat = categoria.getSelectedItem().toString();
-                    nota = new Note(titulo, contenido, vence, fecha, cat);
-                    String json = gson.toJson(nota);
-                    initNotesList(json, cat);
-                    finish();
+                String json = gson.toJson(copiaNotas);
+                dbRef.child("users").child(userId).child("notas").setValue(json);
+                initNotesList(json);
+                finish();
+            }
+        });
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    btn1.setVisibility(View.VISIBLE);
+                    tv1.setVisibility(View.VISIBLE);
+                }else{
+                    tv1.setVisibility(View.INVISIBLE);
+                    btn1.setVisibility(View.INVISIBLE);
                 }
-
             }
         });
     }
 
     public void adaptarSpinner(Spinner spinner){
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listaCategorias);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listaCategorias);
         spinner.setAdapter(adaptador);
     }
 
-    public void initNotesList(String json, String categoria){
-        Intent intent = new Intent(this, NotesListActivity.class);
-        intent.putExtra("nota", json);
-        intent.putExtra("categoria", categoria);
-        startActivity(intent);
+    public void initNotesList(String notasEdit){
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result", notasEdit);
+        returnIntent.putExtra("categoria", cat);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
     }
     public void initSeleccionarFecha(){
         Intent intent = new Intent(this, SelectDateAndHourActivity.class);
@@ -186,23 +211,11 @@ public class NuevaNotaActivity extends AppCompatActivity {
             case (STATIC_INTEGER_VALUE) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String newText = data.getStringExtra(PUBLIC_STATIC_STRING_IDENTIFIER);
-                    tv2.setText(newText);
+                    tv1.setText(newText);
+                    btn1.setVisibility(View.INVISIBLE);
                 } break;
             }
         }
     }
 
-//    public void crearAlarma(){
-//        AlarmManager alarmMgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-//        alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-//
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(System.currentTimeMillis());
-//        calendar.set(Calendar.HOUR_OF_DAY, 02);
-//        calendar.set(Calendar.MINUTE, 00);
-//
-//        alarmMgr.set
-//        alarmMgr.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis()/1000,
-//                AlarmManager.INTERVAL_DAY, alarmIntent);
-//    }
 }

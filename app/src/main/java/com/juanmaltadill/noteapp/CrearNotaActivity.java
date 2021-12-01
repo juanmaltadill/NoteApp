@@ -25,7 +25,7 @@ public class CrearNotaActivity extends AppCompatActivity {
     private int id;
     private String titulo;
     private String contenido;
-    private Date fechaVencimiento;
+    private String fechaVencimiento;
     private Icon icon;
     private String categoria;
     private Gson gson;
@@ -51,7 +51,7 @@ public class CrearNotaActivity extends AppCompatActivity {
                         Chip check = findViewById(R.id.venceCheck);
                         titulo = et1.getText().toString();
                         contenido = et2.getText().toString();
-                        fechaVencimiento = (Date) et3.getText();
+                        fechaVencimiento = et3.getText().toString();
                         System.out.println("La fecha de vencimiento es: "+fechaVencimiento);
                         vence = check.isChecked();
                         nota = new Note();

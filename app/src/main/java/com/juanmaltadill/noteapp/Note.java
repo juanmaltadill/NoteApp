@@ -11,14 +11,14 @@ public class Note {
     String titulo;
     String contenido;
     boolean vence;
-    Date fechaVencimiento;
+    String fechaVencimiento;
     Icon icon;
     String categoria;
 
     public Note(){
 
     }
-    public Note(String titulo, String contenido, boolean vence, Date fechaVencimiento, String categoria){
+    public Note(String titulo, String contenido, boolean vence, String fechaVencimiento, String categoria){
         this.titulo = titulo;
         this.contenido = contenido;
         this.vence = vence;
@@ -58,11 +58,11 @@ public class Note {
         this.vence = vence;
     }
 
-    public Date getFechaVencimiento() {
+    public String getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(String fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

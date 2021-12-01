@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class NotesListActivity extends AppCompatActivity {
     private ArrayList<Note> viewNotas = new ArrayList<Note>();
     private Note nuevaNota;
     private String enviar;
+    private int LAUNCH_SECOND_ACTIVITY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,7 @@ public class NotesListActivity extends AppCompatActivity {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     copia = String.valueOf(task.getResult().getValue());
                     System.out.println("La variable copia es "+copia);
-                    if(copia.length()<73){
+                    if(copia.startsWith("{")){
                         copiaNotas.add(gson.fromJson(copia, Note.class));
                     }else{
                         copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Note>>(){}.getType()));
@@ -93,35 +95,46 @@ public class NotesListActivity extends AppCompatActivity {
                     if(copiaNotas.get(i).categoria.equals(categoria)){
                         viewNotas.add(copiaNotas.get(i));
                     }
+
                 }
-                Collections.reverse(viewNotas);
                 createView(viewNotas);
             }
         });
 
     }
     private void createView(ArrayList<Note> notas){
-        NoteAdapter adapter = new NoteAdapter(NotesListActivity.this, R.layout.noteadapter_layout, notas);
+        Collections.reverse(viewNotas);
+        NoteAdapter adapter = new NoteAdapter(NotesListActivity.this, R.layout.noteadapter_layout, viewNotas);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                createNewNote();
+                Note nota = viewNotas.get(i);
+                editNote(nota);
             }
         });
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View view, int i, long l) {
                 String nota = viewNotas.get(i).getTitulo();
-                System.out.println("OnItemLongClick de notas "+nota);
                 createDialog(nota);
                 return true;
             }
         });
     }
-    private void createNewNote(){
-        Intent intent = new Intent(this, NuevaNotaActivity.class);
-        startActivity(intent);
+    private void editNote(Note note){
+        Intent intent = new Intent(this, EditNoteActivity.class);
+        Collections.reverse(viewNotas);
+        for(int i=0; i<viewNotas.size(); i++){
+            if(viewNotas.get(i) == note){
+                nota = gson.toJson(viewNotas.get(i));
+                System.out.println("el extra que se va a enviar desde noteslist es "+nota);
+                intent.putExtra("nota", nota);
+                intent.putExtra("categoria", viewNotas.get(i).getCategoria());
+            }
+        }
+        Collections.reverse(viewNotas);
+        startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
     }
     private void createDialog(String nota){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -137,6 +150,7 @@ public class NotesListActivity extends AppCompatActivity {
                 }
                 enviar = gson.toJson(copiaNotas);
                 dbRef.child("users").child(userId).child("notas").setValue(enviar);
+                Collections.reverse(viewNotas);
                 for(int i=0; i<viewNotas.size(); i++){
                     if(viewNotas.get(i).titulo == nota){
                         viewNotas.remove(i);
@@ -145,7 +159,6 @@ public class NotesListActivity extends AppCompatActivity {
                 for(int i=0; i<viewNotas.size(); i++){
                     System.out.println("Contenido viewNotas: "+i+" "+viewNotas.get(i).getTitulo());
                 }
-                Collections.reverse(viewNotas);
                 createView(viewNotas);
                 dialog.cancel();
             }
@@ -190,6 +203,27 @@ public class NotesListActivity extends AppCompatActivity {
     private void initNewNote(){
         Intent intent = new Intent(this, NuevaNotaActivity.class);
         startActivity(intent);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LAUNCH_SECOND_ACTIVITY) {
+            if(resultCode == Activity.RESULT_OK){
+                String result = data.getStringExtra("result");
+                String categ = data.getStringExtra("categoria");
+                copiaNotas = gson.fromJson(result, new TypeToken<ArrayList<Note>>(){}.getType());
+                viewNotas = new ArrayList<Note>();
+                for(int i=0; i<copiaNotas.size(); i++){
+                    if(copiaNotas.get(i).categoria.equals(categ)){
+                        viewNotas.add(copiaNotas.get(i));
+                    }
+                }
+                createView(viewNotas);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                // Write your code if there's no result
+            }
+        }
     }
 
 }

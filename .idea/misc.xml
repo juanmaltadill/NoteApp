@@ -7,11 +7,12 @@
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/login_bg.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_auth.xml" value="0.264" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_crear_nota.xml" value="0.4" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_edit_note.xml" value="0.1" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_notes_list.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_nueva_lista.xml" value="0.13333333333333333" />
-        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_nueva_nota.xml" value="0.264" />
-        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_select_date_and_hour.xml" value="0.1265625" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_nueva_nota.xml" value="0.1" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_select_date_and_hour.xml" value="0.264" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/categoryadapter_layout.xml" value="0.536" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/noteadapter_layout.xml" value="0.4" />

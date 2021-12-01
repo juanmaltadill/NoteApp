@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -39,11 +40,11 @@ public class SelectDateAndHourActivity extends AppCompatActivity implements View
 
     //Widgets
     EditText etHora;
-    Button ibObtenerHora;
+    ImageButton ibObtenerHora;
 
     //Widgets
     EditText etFecha;
-    Button ibObtenerFecha;
+    ImageButton ibObtenerFecha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +53,14 @@ public class SelectDateAndHourActivity extends AppCompatActivity implements View
         //Widget EditText donde se mostrara la fecha obtenida
         etFecha = (EditText) findViewById(R.id.et_mostrar_fecha_picker);
         //Widget ImageButton del cual usaremos el evento clic para obtener la fecha
-        ibObtenerFecha = (Button) findViewById(R.id.ib_obtener_fecha);
+        ibObtenerFecha = (ImageButton) findViewById(R.id.ib_obtener_fecha);
         //Evento setOnClickListener - clic
         ibObtenerFecha.setOnClickListener(this);
                 //SECCION DEL ONCREATE PARA OBTENER LA HORA
         //Widget EditText donde se mostrara la hora obtenida
         etHora = (EditText) findViewById(R.id.et_mostrar_hora_picker);
         //Widget ImageButton del cual usaremos el evento clic para obtener la hora
-        ibObtenerHora = (Button) findViewById(R.id.ib_obtener_hora);
+        ibObtenerHora = (ImageButton) findViewById(R.id.ib_obtener_hora);
         //Evento setOnClickListener - clic
         ibObtenerHora.setOnClickListener(this);
 

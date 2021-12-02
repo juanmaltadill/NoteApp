@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.media.Image;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,22 +34,25 @@ public class NuevaListaActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
     private String name;
     private String save;
-    private ArrayList<Categoria> categories;
+    private ArrayList<Categoria> categories = new ArrayList<Categoria>();
     private Categoria cat;
     private Gson gson;
     private int LAUNCH_ICON_ACTIVITY = 2;
     private ImageView img;
     private String result;
+    private boolean flag = true;
+    private EditText et1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_lista);
-        categories= new ArrayList<Categoria>();
         auth = FirebaseAuth.getInstance();
+        String userId = auth.getUid();
         dbRef = FirebaseDatabase.getInstance("https://noteapp-16399-default-rtdb.europe-west1.firebasedatabase.app").getReference();
         gson = new Gson();
         cat = new Categoria();
-        dbRef.child("users").child("categorias").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        et1 = findViewById(R.id.nombreListaEditText);
+        dbRef.child("users").child(userId).child("categorias").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -56,8 +61,12 @@ public class NuevaListaActivity extends AppCompatActivity {
                 else {
                     if(task.getResult().getValue()!=null){
                         save = task.getResult().getValue().toString();
-                        System.out.println("La copia de la base de datos es: "+save);
-                        System.out.println("categorias "+save);
+                        System.out.println("El resultado de save en nuevalista es "+save);
+                        if(save.startsWith("{")){
+                            categories.add(gson.fromJson(save, Categoria.class));
+                        }else{
+                            categories.addAll(gson.fromJson(save, new TypeToken<ArrayList<Categoria>>(){}.getType()));
+                        }
                     }
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                 }
@@ -71,15 +80,31 @@ public class NuevaListaActivity extends AppCompatActivity {
                         initSelectIcon();
                         break;
                     case R.id.saveBtn:
-                        EditText et1 = findViewById(R.id.nombreListaEditText);
-                        name = et1.getText().toString();
-                        cat.setNombre(name);
-                        cat.setIcon(result);
-                        String json = gson.toJson(cat);
-                        System.out.println("la variable enviar es"+json);
-                        initHome(json);
-                        finish();
-                        break;
+                        flag = true;
+                        System.out.println("El tamaño de categories es "+categories);
+                        for(int i=0; i<categories.size();i++){
+                            if(categories.get(i).nombre.equals(et1.getText().toString())){
+                                flag=false;
+                                System.out.println("El estado de flag es "+flag);
+                            }
+                        }
+                        if(result==null){
+                            Toast.makeText(context(), "Debes asignar un icono a la lista",
+                                    Toast.LENGTH_SHORT).show();
+                        }else if(!flag){
+                            Toast.makeText(context(), "Ya existe una categoría con ese nombre",
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            name = et1.getText().toString();
+                            cat.setNombre(name);
+                            cat.setIcon(result);
+                            String json = gson.toJson(cat);
+                            System.out.println("la variable enviar es"+json);
+                            initHome(json);
+                            finish();
+                            break;
+                        }
+
                 }
             }
         };
@@ -89,6 +114,9 @@ public class NuevaListaActivity extends AppCompatActivity {
         selectIconBtn.setOnClickListener(onClickListener);
         Button saveBtn = findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(onClickListener);
+    }
+    private Context context(){
+        return this;
     }
     private void initSelectIcon(){
         Intent intent = new Intent(this, SelectIconActivity.class);
@@ -126,16 +154,16 @@ public class NuevaListaActivity extends AppCompatActivity {
                     case "hotel":
                         img.setImageResource(R.drawable.hotel);
                         break;
-                    case "juegos":
+                    case "juego":
                         img.setImageResource(R.drawable.juegos);
                         break;
                     case "libros":
                         img.setImageResource(R.drawable.libros);
                         break;
-                    case "reuniones":
+                    case "reunion":
                         img.setImageResource(R.drawable.reuniones);
                         break;
-                    case "llamadas":
+                    case "llamada":
                         img.setImageResource(R.drawable.llamadas);
                         break;
                 }

@@ -43,7 +43,7 @@ public class CategoryAdapter extends ArrayAdapter<Categoria> {
             ImageView img = (ImageView) v.findViewById(R.id.icon);
             TextView tt2 = (TextView) v.findViewById(R.id.nombreCategoria);
 
-            if (img != null) {
+            if (img != null && p.getIcon() != null) {
                 switch(p.getIcon().toString()){
                     case "avion":
                         img.setImageResource(R.drawable.avion);
@@ -63,16 +63,16 @@ public class CategoryAdapter extends ArrayAdapter<Categoria> {
                     case "hotel":
                         img.setImageResource(R.drawable.hotel);
                         break;
-                    case "juegos":
+                    case "juego":
                         img.setImageResource(R.drawable.juegos);
                         break;
                     case "libros":
                         img.setImageResource(R.drawable.libros);
                         break;
-                    case "reuniones":
+                    case "reunion":
                         img.setImageResource(R.drawable.reuniones);
                         break;
-                    case "llamadas":
+                    case "llamada":
                         img.setImageResource(R.drawable.llamadas);
                         break;
                 }

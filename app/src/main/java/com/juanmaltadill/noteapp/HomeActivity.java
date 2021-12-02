@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     String json = getIntent().getExtras().getString("categoria");
                     copia = String.valueOf(task.getResult().getValue());
-                    if(copia.length()<27){
+                    if(copia.startsWith("{")){
                         copiaCategorias.add(gson.fromJson(copia, Categoria.class));
                     }else{
                         copiaCategorias.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Categoria>>(){}.getType()));

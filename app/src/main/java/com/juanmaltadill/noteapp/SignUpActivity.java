@@ -102,6 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
         Categoria cat = new Categoria();
         Note nota = new Note();
         cat.setNombre("Sin categoria");
+        cat.setIcon("engranaje");
         nota.setTitulo("Nota vacia");
         nota.setCategoria(cat.getNombre());
         gson = new Gson();

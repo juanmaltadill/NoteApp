@@ -2,6 +2,7 @@ package com.juanmaltadill.noteapp;
 
 import android.content.Context;
 import android.graphics.drawable.Icon;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,15 +40,48 @@ public class CategoryAdapter extends ArrayAdapter<Categoria> {
         Categoria p = getItem(position);
 
         if (p != null) {
-            ImageView icon = (ImageView) v.findViewById(R.id.icon);
+            ImageView img = (ImageView) v.findViewById(R.id.icon);
             TextView tt2 = (TextView) v.findViewById(R.id.nombreCategoria);
 
-            if (icon != null) {
-                icon.setImageIcon(p.getIcon());
+            if (img != null) {
+                switch(p.getIcon().toString()){
+                    case "avion":
+                        img.setImageResource(R.drawable.avion);
+                        break;
+                    case "compras":
+                        img.setImageResource(R.drawable.compras);
+                        break;
+                    case "engranajes":
+                        img.setImageResource(R.drawable.engranajes);
+                        break;
+                    case "estudios":
+                        img.setImageResource(R.drawable.estudios);
+                        break;
+                    case "gimnasio":
+                        img.setImageResource(R.drawable.gimnasio);
+                        break;
+                    case "hotel":
+                        img.setImageResource(R.drawable.hotel);
+                        break;
+                    case "juegos":
+                        img.setImageResource(R.drawable.juegos);
+                        break;
+                    case "libros":
+                        img.setImageResource(R.drawable.libros);
+                        break;
+                    case "reuniones":
+                        img.setImageResource(R.drawable.reuniones);
+                        break;
+                    case "llamadas":
+                        img.setImageResource(R.drawable.llamadas);
+                        break;
+                }
+                System.out.println("Categoryadapter p.icon "+p.getIcon().toString());
             }
 
             if (tt2 != null) {
                 tt2.setText(p.getNombre().toString());
+                System.out.println("El nombre en el adaptador es+ "+p.getNombre().toString());
             }
         }
 

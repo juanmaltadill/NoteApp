@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/ic_action_search.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/ic_baseline_event_note_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/drawable/login_bg.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_auth.xml" value="0.264" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_crear_nota.xml" value="0.4" />
@@ -13,6 +18,7 @@
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_nueva_lista.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_nueva_nota.xml" value="0.1" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_select_date_and_hour.xml" value="0.264" />
+        <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_select_icon.xml" value="0.2" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/categoryadapter_layout.xml" value="0.536" />
         <entry key="..\:/Users/juanm/Documents/Programacion/Proyecto DAM/NoteApp/app/src/main/res/layout/noteadapter_layout.xml" value="0.4" />

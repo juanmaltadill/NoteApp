@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class Categoria {
     String nombre;
-    Icon icon;
+    String icon;
     ArrayList<Note> notes;
 
     public Categoria(){
 
     }
-    public Categoria(String nombre, Icon icon, ArrayList<Note> notes){
+    public Categoria(String nombre, String icon, ArrayList<Note> notes){
         this.nombre = nombre;
         this.icon = icon;
         this.notes = notes;
@@ -26,11 +26,11 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public Icon getIcon() {
+    public String getIcon() {
         return icon;
     }
 
-    public void setIcon(Icon icon) {
+    public void setIcon(String icon) {
         this.icon = icon;
     }
 

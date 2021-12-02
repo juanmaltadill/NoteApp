@@ -1,9 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7C64BFFB"
+    android:orientation="vertical"
+    android:padding="50dp"
     tools:context=".SelectIconActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="434dp"
+        android:background="@drawable/login_bg"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:tag="avion"
+                android:id="@+id/iconAvion"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/avion"
+                android:background="?android:attr/selectableItemBackground"/>
+
+            <ImageView
+                android:tag="compras"
+                android:id="@+id/iconCompras"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/compras"
+                android:background="?android:attr/selectableItemBackground"/>
+
+            <ImageView
+                android:tag="engranajes"
+                android:id="@+id/iconEngranajes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/engranajes"
+                android:background="?android:attr/selectableItemBackground"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:tag="estudios"
+                android:id="@+id/iconEstudios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/estudios" />
+
+            <ImageView
+                android:tag="gimnasio"
+                android:id="@+id/iconGimnasio"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/gimnasio" />
+
+            <ImageView
+                android:tag="hotel"
+                android:id="@+id/iconHotel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/hotel" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:tag="juego"
+                android:id="@+id/iconJuego"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/juegos" />
+
+            <ImageView
+                android:tag="libros"
+                android:id="@+id/iconLibros"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/libros" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:tag="llamada"
+                android:id="@+id/iconLlamada"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/llamadas" />
+
+            <ImageView
+                android:tag="reunion"
+                android:id="@+id/iconReunion"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:srcCompat="@drawable/reuniones" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/iconBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Button" />
+</LinearLayout>

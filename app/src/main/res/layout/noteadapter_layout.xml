@@ -1,41 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout android:layout_width="fill_parent"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_marginVertical="5dp"
+    android:background="@drawable/login_bg"
+    android:backgroundTint="#7C64BFFB"
     android:descendantFocusability="blocksDescendants"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical"
+    android:padding="5dp">
 
-        <TableRow
-            android:id="@+id/TableRow01"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/id"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:height="1sp"
-                android:gravity="left"
-                android:text="id"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:typeface="monospace" />
-        </TableRow>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="100dp"
+            app:srcCompat="@drawable/nota" />
 
-        <TableRow
+        <TextView
+            android:id="@+id/tituloNota"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:height="50sp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="20sp" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/tituloNota"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:height="50sp"
-                android:gravity="center"
-                android:text="TextView"
-                android:textSize="20sp" />
-        </TableRow>
+    <TableRow
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/login_bg"
+        android:gravity="center|left"
+        android:padding="10dp">
 
-    </TableLayout>
+        <TextView
+            android:id="@+id/contenidoNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="40dp"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/fechaVencimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="TextView" />
+
+    </TableRow>
+
+</TableLayout>

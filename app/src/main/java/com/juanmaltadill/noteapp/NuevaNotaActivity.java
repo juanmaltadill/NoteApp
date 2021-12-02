@@ -61,15 +61,16 @@ public class NuevaNotaActivity extends AppCompatActivity {
     private TextView tv2;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("");
     boolean flag;
+    private TextView tv1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_nota);
+        this.setTitle("Nueva nota");
         EditText et1 = findViewById(R.id.tituloNuevaNotaEt);
         EditText et2 = findViewById(R.id.contenidoNuevaNotaEt);
         Button btn1 = findViewById(R.id.seleccionarFechaBtn);
-        TextView tv1 = findViewById(R.id.fechaNuevaNotaTv);
-        tv2 = findViewById(R.id.fechaHoraTv);
+        tv1 = findViewById(R.id.fechaNuevaNotaTv);
         Button button = findViewById(R.id.crearNuevaNotaBtn);
         Switch check = findViewById(R.id.venceNuevaNotaSwitch);
         Spinner categoria = findViewById(R.id.categoriaNuevaNotaSpinner);
@@ -144,12 +145,22 @@ public class NuevaNotaActivity extends AppCompatActivity {
                         toast.show();
                     }
                 }
+                if(et1.getText().toString().equals(null) || et1.getText().toString() == "" || et1.getText().toString().length()<1){
+                    flag = false;
+                    Toast toast=Toast.makeText(getApplicationContext(),"El título de la nota está vacío",Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                if(listaCategorias.size()<1){
+                    flag = false;
+                    Toast toast=Toast.makeText(getApplicationContext(),"No existe ninguna categoría a la que asignar la nota",Toast.LENGTH_LONG);
+                    toast.show();
+                }
                 if(flag){
                     titulo = et1.getText().toString();
                     contenido = et2.getText().toString();
                     vence = check.isChecked();
                     if(vence){
-                        fecha = tv2.getText().toString();
+                        fecha = tv1.getText().toString();
                     }else{
                         fecha = null;
                     }
@@ -165,7 +176,7 @@ public class NuevaNotaActivity extends AppCompatActivity {
     }
 
     public void adaptarSpinner(Spinner spinner){
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listaCategorias);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listaCategorias);
         spinner.setAdapter(adaptador);
     }
 
@@ -186,7 +197,7 @@ public class NuevaNotaActivity extends AppCompatActivity {
             case (STATIC_INTEGER_VALUE) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String newText = data.getStringExtra(PUBLIC_STATIC_STRING_IDENTIFIER);
-                    tv2.setText(newText);
+                    tv1.setText(newText);
                 } break;
             }
         }

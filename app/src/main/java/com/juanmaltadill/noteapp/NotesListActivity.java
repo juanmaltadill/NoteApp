@@ -184,6 +184,11 @@ public class NotesListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            case R.id.logout:
+                auth.signOut();
+                initAuth();
+                finish();
+                return true;
             case R.id.action_settings1:
                 initNewList();
                 finish();
@@ -224,6 +229,10 @@ public class NotesListActivity extends AppCompatActivity {
                 // Write your code if there's no result
             }
         }
+    }
+    private void initAuth(){
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
     }
 
 }

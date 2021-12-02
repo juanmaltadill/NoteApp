@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String phone;
     private String categoria;
     private String note;
+    private String conf;
     private Gson gson;
 
 
@@ -53,7 +55,26 @@ public class SignUpActivity extends AppCompatActivity {
                         pass = passEt.getText().toString();
                         EditText phoneEt = findViewById(R.id.phoneEditText);
                         phone = phoneEt.getText().toString();
-                        createAccount(email, pass);
+                        EditText confEt = findViewById(R.id.confpassEditText);
+                        conf = confEt.getText().toString();
+                        if(name.equals("")){
+                            Toast.makeText(context(), "El nombre no puede estar vacío",
+                                    Toast.LENGTH_SHORT).show();
+                        }else if(email.equals("")){
+                            Toast.makeText(context(), "Debes introducir un email",
+                                    Toast.LENGTH_SHORT).show();
+                        }else if(!email.contains("@")){
+                            Toast.makeText(context(), "Debes introducir un email válido",
+                                    Toast.LENGTH_SHORT).show();
+                        }else if(pass.equals("") || pass.length()<12){
+                            Toast.makeText(context(), "La contraseña debe tener al menos 12 caracteres",
+                                    Toast.LENGTH_SHORT).show();
+                        }else if(!pass.equals(conf)){
+                            Toast.makeText(context(), "Las contraseñas no coinciden",
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            createAccount(email, pass);
+                        }
                         break;
                 }
             }
@@ -90,6 +111,9 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
     }
+    private Activity context(){
+        return this;
+    }
     private void initAuth(){
         Intent intent = new Intent(this, AuthActivity.class);
         startActivity(intent);
@@ -108,8 +132,6 @@ public class SignUpActivity extends AppCompatActivity {
         gson = new Gson();
         categoria = gson.toJson(cat);
         note = gson.toJson(nota);
-        System.out.println(cat.nombre);
-        System.out.println("La longitud de note es "+note.length());
         dbRef.child("users").child(userId).child("categorias").setValue(categoria);
         dbRef.child("users").child(userId).child("notas").setValue(note);
     }

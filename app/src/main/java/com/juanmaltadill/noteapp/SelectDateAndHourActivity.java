@@ -49,17 +49,18 @@ public class SelectDateAndHourActivity extends AppCompatActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_date_and_hour);
+        this.setTitle("Fecha de vencimiento");
                 //SECCION DEL ONCREATE PARA OBTENER LA FECHA
-        //Widget EditText donde se mostrara la fecha obtenida
+        //EditText donde se mostrara la fecha obtenida
         etFecha = (EditText) findViewById(R.id.et_mostrar_fecha_picker);
-        //Widget ImageButton del cual usaremos el evento clic para obtener la fecha
+        //ImageButton del cual usaremos el evento clic para obtener la fecha
         ibObtenerFecha = (ImageButton) findViewById(R.id.ib_obtener_fecha);
-        //Evento setOnClickListener - clic
+        //Evento setOnClickListener
         ibObtenerFecha.setOnClickListener(this);
                 //SECCION DEL ONCREATE PARA OBTENER LA HORA
-        //Widget EditText donde se mostrara la hora obtenida
+        //EditText donde se mostrara la hora obtenida
         etHora = (EditText) findViewById(R.id.et_mostrar_hora_picker);
-        //Widget ImageButton del cual usaremos el evento clic para obtener la hora
+        //ImageButton del cual usaremos el evento clic para obtener la hora
         ibObtenerHora = (ImageButton) findViewById(R.id.ib_obtener_hora);
         //Evento setOnClickListener - clic
         ibObtenerHora.setOnClickListener(this);
@@ -98,12 +99,7 @@ public class SelectDateAndHourActivity extends AppCompatActivity implements View
 
 
             }
-            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-            /**
-             *También puede cargar los valores que usted desee
-             */
         },anio, mes, dia);
-        //Muestro el widget
         recogerFecha.show();
     }
 
@@ -125,9 +121,6 @@ public class SelectDateAndHourActivity extends AppCompatActivity implements View
                 //Muestro la hora con el formato deseado
                 etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado + " " + AM_PM);
             }
-            //Estos valores deben ir en ese orden
-            //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
-            //Pero el sistema devuelve la hora en formato 24 horas
         }, hora, minuto, false);
         recogerHora.show();
     }

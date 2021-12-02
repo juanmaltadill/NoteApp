@@ -150,6 +150,10 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            case R.id.logout:
+                auth.signOut();
+                finish();
+                return true;
             case R.id.action_settings1:
                 initNewList();
                 return true;
@@ -183,7 +187,7 @@ public class HomeActivity extends AppCompatActivity {
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 for(int i=0; i<copiaNotas.size();i++){
-                    if(copiaNotas.get(i).getCategoria() == categoria){
+                    if(copiaNotas.get(i).getCategoria().equals(categoria)){
                         copiaNotas.remove(i);
                     }
                 }

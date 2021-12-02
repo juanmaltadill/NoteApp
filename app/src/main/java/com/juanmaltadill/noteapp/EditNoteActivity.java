@@ -60,11 +60,13 @@ public class EditNoteActivity extends AppCompatActivity {
     private Switch check;
     private Spinner categoria;
     private String copiaCategoria;
+    private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
+        this.setTitle("Editar nota");
         et1 = findViewById(R.id.editarTituloNotaEt);
         et2 = findViewById(R.id.editarContenidoNotaEt);
         btn1 = findViewById(R.id.editarFechaBtn);
@@ -142,6 +144,12 @@ public class EditNoteActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag = true;
+                if(et1.getText().toString().equals(null) || et1.getText().toString() == "" || et1.getText().toString().length()<1){
+                    flag = false;
+                    Toast toast=Toast.makeText(getApplicationContext(),"El título de la nota está vacío",Toast.LENGTH_LONG);
+                    toast.show();
+                }
                 titulo = et1.getText().toString();
                 contenido = et2.getText().toString();
                 vence = check.isChecked();
@@ -150,28 +158,34 @@ public class EditNoteActivity extends AppCompatActivity {
                 }else{
                     fecha = null;
                 }
-                cat = categoria.getSelectedItem().toString();
-                Note comparar = gson.fromJson(extra, Note.class);
-                for(int i=0; i<copiaNotas.size(); i++){
-                    System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
-                    if(copiaNotas.get(i).getTitulo().equals(comparar.getTitulo())){
+                if (flag){
+                    cat = categoria.getSelectedItem().toString();
+                    Note comparar = gson.fromJson(extra, Note.class);
+                    for(int i=0; i<copiaNotas.size(); i++){
                         System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
-                        copiaNotas.get(i).setTitulo(titulo);
-                        copiaNotas.get(i).setContenido(contenido) ;
-                        copiaNotas.get(i).setVence(vence);
-                        if(vence){
-                            copiaNotas.get(i).setFechaVencimiento(fecha);
-                        }else{
-                            copiaNotas.get(i).setFechaVencimiento(null);
+                        if(copiaNotas.get(i).getTitulo().equals(comparar.getTitulo())){
+                            System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
+                            copiaNotas.get(i).setTitulo(titulo);
+                            copiaNotas.get(i).setContenido(contenido) ;
+                            copiaNotas.get(i).setVence(vence);
+                            if(vence){
+                                copiaNotas.get(i).setFechaVencimiento(fecha);
+                            }else{
+                                copiaNotas.get(i).setFechaVencimiento(null);
+                            }
+                            copiaNotas.get(i).setCategoria(cat);
+                            System.out.println("CopiaNotas editnote nuevo titulo "+copiaNotas.get(i).getTitulo());
                         }
-                        copiaNotas.get(i).setCategoria(cat);
-                        System.out.println("CopiaNotas editnote nuevo titulo "+copiaNotas.get(i).getTitulo());
                     }
+
+                    String json = gson.toJson(copiaNotas);
+                    dbRef.child("users").child(userId).child("notas").setValue(json);
+                    initNotesList(json);
+                    finish();
                 }
-                String json = gson.toJson(copiaNotas);
-                dbRef.child("users").child(userId).child("notas").setValue(json);
-                initNotesList(json);
-                finish();
+
+
+
             }
         });
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -212,7 +226,6 @@ public class EditNoteActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String newText = data.getStringExtra(PUBLIC_STATIC_STRING_IDENTIFIER);
                     tv1.setText(newText);
-                    btn1.setVisibility(View.INVISIBLE);
                 } break;
             }
         }

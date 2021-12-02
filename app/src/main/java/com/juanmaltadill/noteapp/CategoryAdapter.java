@@ -78,13 +78,11 @@ public class CategoryAdapter extends ArrayAdapter<Categoria> {
                 }
                 System.out.println("Categoryadapter p.icon "+p.getIcon().toString());
             }
-
             if (tt2 != null) {
                 tt2.setText(p.getNombre().toString());
                 System.out.println("El nombre en el adaptador es+ "+p.getNombre().toString());
             }
         }
-
         return v;
     }
 

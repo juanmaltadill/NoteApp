@@ -22,7 +22,7 @@
             android:id="@+id/tituloNuevaNotaTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Título" />
+            android:text="@string/titulo_tv" />
 
         <EditText
             android:id="@+id/tituloNuevaNotaEt"
@@ -35,7 +35,7 @@
             android:id="@+id/contenidoNuevaNotaTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contenido" />
+            android:text="@string/contenido_tv" />
 
         <EditText
             android:id="@+id/contenidoNuevaNotaEt"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="top|left"
-            android:hint="Introduzca aquí el texto de su nota..."
+            android:hint="@string/contenido_hint"
             android:inputType="textMultiLine"
             android:lines="8"
             android:maxLines="10"
@@ -54,13 +54,13 @@
             android:id="@+id/venceNuevaNotaSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¿Vence?" />
+            android:text="@string/vence_tv" />
 
         <TextView
             android:id="@+id/fechaHoraTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha de vencimiento" />
+            android:text="@string/fecha_vencimiento_tv" />
 
         <TextView
             android:id="@+id/fechaNuevaNotaTv"
@@ -77,7 +77,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             android:backgroundTint="#7C64BFFB"
-            android:text="Seleccionar fecha y hora"
+            android:text="@string/seleccionar_fecha_btn"
             android:textColor="@color/white"
             android:visibility="invisible"
             app:cornerRadius="50dp" />
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Categoria" />
+            android:text="@string/categoria_tv" />
 
         <Spinner
             android:id="@+id/categoriaNuevaNotaSpinner"
@@ -96,13 +96,14 @@
             android:background="@drawable/login_bg"
             android:visibility="visible" />
     </LinearLayout>
+
     <Button
         android:id="@+id/crearNuevaNotaBtn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="80dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Guardar"
+        android:text="@string/guardar_btn"
         android:textColor="@color/black"
         app:cornerRadius="50dp" />
 </LinearLayout>

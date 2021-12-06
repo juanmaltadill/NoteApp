@@ -53,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        this.setTitle("Categorias");
+        this.setTitle(R.string.categorias_tv);
         listview = (ListView) findViewById(R.id.categoriesListView);
         listview.setClickable(true);
 

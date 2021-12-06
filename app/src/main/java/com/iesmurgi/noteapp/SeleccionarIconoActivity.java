@@ -22,7 +22,7 @@ public class SeleccionarIconoActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_icon);
-        this.setTitle("Elegir icono");
+        this.setTitle(R.string.seleccionar_icono_btn);
         ImageView avion = (ImageView) findViewById(R.id.iconAvion);
         img.add(avion);
         ImageView compras = (ImageView) findViewById(R.id.iconCompras);

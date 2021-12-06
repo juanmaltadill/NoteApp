@@ -51,7 +51,7 @@ public class SeleccionarFechaHoraActivity extends AppCompatActivity implements V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_date_and_hour);
-        this.setTitle("Fecha de vencimiento");
+        this.setTitle(R.string.seleccionar_fecha_btn);
                 //SECCION DEL ONCREATE PARA OBTENER LA FECHA
         //EditText donde se mostrara la fecha obtenida
         etFecha = (EditText) findViewById(R.id.et_mostrar_fecha_picker);

@@ -63,7 +63,7 @@ public class NoteAdapter extends ArrayAdapter<Nota> {
                 if(p.getFechaVencimiento()!=null){
                     tt4.setText(p.getFechaVencimiento().toString());
                 }else{
-                    tt4.setText("No vence");
+                    tt4.setText(R.string.no_vence);
                 }
 
             }

@@ -26,14 +26,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Nombre" />
+            android:text="@string/nombre_tv" />
 
         <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="nombre"
+            android:hint="@string/nombre_tv"
             android:inputType="textPersonName"
             android:padding="5dp" />
 
@@ -42,14 +42,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Telefono" />
+            android:text="@string/telefono_tv" />
 
         <EditText
             android:id="@+id/phoneEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="telefono"
+            android:hint="@string/telefono_tv"
             android:inputType="phone"
             android:padding="5dp" />
 
@@ -58,14 +58,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Email" />
+            android:text="@string/email_tv" />
 
         <EditText
             android:id="@+id/emailSUEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="email"
+            android:hint="@string/email_tv"
             android:inputType="textEmailAddress"
             android:padding="5dp" />
 
@@ -74,14 +74,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Contraseña" />
+            android:text="@string/contraseña_tv" />
 
         <EditText
             android:id="@+id/passEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="contraseña"
+            android:hint="@string/contraseña_tv"
             android:inputType="textPassword"
             android:padding="5dp" />
 
@@ -90,14 +90,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Confirma tu contraseña" />
+            android:text="@string/confirmar_contraseña_tv" />
 
         <EditText
             android:id="@+id/confpassEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="contraseña"
+            android:hint="@string/confirmar_contraseña_tv"
             android:inputType="textPassword"
             android:padding="5dp" />
 
@@ -110,7 +110,7 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
         android:gravity="center|center_vertical"
-        android:text="Registrar"
+        android:text="@string/boton_registrar"
         android:textColor="@color/black"
         app:cornerRadius="30dp"
         tools:layout_editor_absoluteX="66dp"

@@ -2,6 +2,7 @@
     <string name="app_name">NoteApp</string>
     <string name="action_search">Buscar</string>
     <string name="action_settings1">Nueva categoría</string>
+    <string name="action_settings2">Nueva nota</string>
     <string name="boton_registrar">Registrar</string>
     <string name="boton_acceder">Acceder</string>
     <string name="mensaje_signup">¿Aún no tienes una cuenta? Regístrate aquí</string>
@@ -11,7 +12,7 @@
     <string name="contraseña_tv">Contraseña</string>
     <string name="confirmar_contraseña_tv">Confirmar contraseña</string>
     <string name="categorias_tv">Categorías</string>
-    <string name="título_tv">Título</string>
+    <string name="titulo_tv">Título</string>
     <string name="notas_tv">Notas</string>
     <string name="contenido_tv">Contenido</string>
     <string name="contenido_hint">Introduzca aquí el contenido de su nota...</string>
@@ -26,4 +27,5 @@
     <string name="nueva_categoria">Nueva categoría</string>
     <string name="icono_tv">Icono</string>
     <string name="seleccionar_icono_btn">Seleccionar icono</string>
+    <string name="no_vence">No vence</string>
 </resources>

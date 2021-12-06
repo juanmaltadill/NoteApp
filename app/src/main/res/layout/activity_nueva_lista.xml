@@ -28,7 +28,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre" />
+                android:text="@string/nombre_tv" />
 
             <EditText
                 android:id="@+id/nombreListaEditText"
@@ -41,7 +41,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Icono" />
+                android:text="@string/icono_tv" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:backgroundTint="#7C64BFFB"
-                android:text="Seleccionar Icono"
+                android:text="@string/seleccionar_icono_btn"
                 app:cornerRadius="30dp" />
 
         </LinearLayout>
@@ -68,7 +68,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
-            android:text="Guardar Cambios"
+            android:text="@string/guardar_btn"
             android:textColor="@color/black"
             app:cornerRadius="30dp" />
     </LinearLayout>

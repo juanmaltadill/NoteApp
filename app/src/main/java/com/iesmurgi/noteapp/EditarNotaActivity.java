@@ -65,7 +65,7 @@ public class EditarNotaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
-        this.setTitle("Editar nota");
+        this.setTitle(R.string.editar_nota);
         et1 = findViewById(R.id.editarTituloNotaEt);
         et2 = findViewById(R.id.editarContenidoNotaEt);
         btn1 = findViewById(R.id.editarFechaBtn);

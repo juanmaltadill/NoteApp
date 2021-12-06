@@ -45,7 +45,7 @@ public class NuevaListaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_lista);
-        this.setTitle("Nueva categoría");
+        this.setTitle(R.string.nueva_categoria);
         auth = FirebaseAuth.getInstance();
         String userId = auth.getUid();
         dbRef = FirebaseDatabase.getInstance("https://noteapp-16399-default-rtdb.europe-west1.firebasedatabase.app").getReference();

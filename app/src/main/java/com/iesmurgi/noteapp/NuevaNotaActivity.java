@@ -57,7 +57,7 @@ public class NuevaNotaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_nota);
-        this.setTitle("Nueva nota");
+        this.setTitle(R.string.action_settings2);
         EditText et1 = findViewById(R.id.tituloNuevaNotaEt);
         EditText et2 = findViewById(R.id.contenidoNuevaNotaEt);
         Button btn1 = findViewById(R.id.seleccionarFechaBtn);

@@ -22,7 +22,7 @@
             android:id="@+id/editarTituloNotaTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Título" />
+            android:text="@string/titulo_tv" />
 
         <EditText
             android:id="@+id/editarTituloNotaEt"
@@ -35,7 +35,7 @@
             android:id="@+id/editarContenidoNotaTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contenido" />
+            android:text="@string/contenido_tv" />
 
         <EditText
             android:id="@+id/editarContenidoNotaEt"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="top|left"
-            android:hint="Introduzca aquí el texto de su nota..."
+            android:hint="@string/contenido_hint"
             android:inputType="textMultiLine"
             android:lines="8"
             android:maxLines="10"
@@ -54,13 +54,13 @@
             android:id="@+id/editarVenceNotaSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¿Vence?" />
+            android:text="@string/vence_tv" />
 
         <TextView
             android:id="@+id/editarfechaHoraTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha de vencimiento" />
+            android:text="@string/fecha_vencimiento_tv" />
 
         <TextView
             android:id="@+id/editarFechaNotaTv"
@@ -75,17 +75,17 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
             android:backgroundTint="#7C64BFFB"
-            android:text="Seleccionar fecha y hora"
+            android:text="@string/seleccionar_fecha_btn"
             android:textColor="@color/white"
-            app:cornerRadius="50dp"
-            android:layout_marginVertical="5dp"/>
+            app:cornerRadius="50dp" />
 
         <TextView
             android:id="@+id/editarCategoriaTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Categoria" />
+            android:text="@string/categoria_tv" />
 
         <Spinner
             android:id="@+id/editarCategoriaNotaSpinner"
@@ -102,7 +102,7 @@
         android:layout_height="60dp"
         android:layout_marginHorizontal="80dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Guardar"
+        android:text="@string/guardar_btn"
         android:textColor="@color/black"
         app:cornerRadius="50dp" />
 </LinearLayout>

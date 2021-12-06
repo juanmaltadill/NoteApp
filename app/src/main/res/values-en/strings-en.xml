@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NoteApp</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings1">New Category</string>
+    <string name="action_settings2">New Note</string>
+    <string name="boton_registrar">Sign Up</string>
+    <string name="boton_acceder">Log In</string>
+    <string name="mensaje_signup">¿Don\'t have an account yet? Sign up here</string>
+    <string name="nombre_tv">Name</string>
+    <string name="email_tv">Email</string>
+    <string name="telefono_tv">Phone</string>
+    <string name="contraseña_tv">Password</string>
+    <string name="confirmar_contraseña_tv">Confirm Password</string>
+    <string name="categorias_tv">Categories</string>
+    <string name="titulo_tv">Title</string>
+    <string name="notas_tv">Notes</string>
+    <string name="contenido_tv">Content</string>
+    <string name="contenido_hint">Write here the body of your note...</string>
+    <string name="vence_tv">¿Expires?</string>
+    <string name="fecha_vencimiento_tv">Expiration date</string>
+    <string name="categoria_tv">Category</string>
+    <string name="editar_nota">Edit Note</string>
+    <string name="seleccionar_fecha_btn">Select date and hour</string>
+    <string name="elige_fecha_hora">Choose date and hour</string>
+    <string name="seleccionar_btn">Select</string>
+    <string name="guardar_btn">Save</string>
+    <string name="nueva_categoria">New Category</string>
+    <string name="icono_tv">Icon</string>
+    <string name="seleccionar_icono_btn">Select Icon</string>
+    <string name="no_vence">Doesn\'t expire</string>
+</resources>

@@ -50,7 +50,7 @@ public class ListaNotasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
-        this.setTitle("Notas");
+        this.setTitle(R.string.notas_tv);
         listview = (ListView) findViewById(R.id.notesListView);
         nota = getIntent().getExtras().getString("nota");
         System.out.println("La nota extra es "+nota);

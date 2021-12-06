@@ -20,9 +20,6 @@
             android:name="com.iesmurgi.noteapp.SeleccionarFechaHoraActivity"
             android:exported="false" />
         <activity
-            android:name="com.iesmurgi.noteapp.CrearNotaActivity"
-            android:exported="false" />
-        <activity
             android:name="com.iesmurgi.noteapp.ListaNotasActivity"
             android:exported="false" />
         <activity android:name="com.iesmurgi.noteapp.NuevaNotaActivity" />

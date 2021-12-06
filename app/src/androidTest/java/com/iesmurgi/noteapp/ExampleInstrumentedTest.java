@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import android.content.Context;
 

@@ -7,7 +7,7 @@
     android:background="#7C64BFFB"
     android:orientation="vertical"
     android:padding="50dp"
-    tools:context=".SelectIconActivity">
+    tools:context="com.iesmurgi.noteapp.SeleccionarIconoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

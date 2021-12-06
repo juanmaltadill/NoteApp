@@ -1,10 +1,10 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 public class User {
     String email;
     String password;
     int id;
-    Note[] notes;
+    Nota[] notas;
     Categoria[] categorias;
     String phone;
 
@@ -56,11 +56,11 @@ public class User {
         this.id = id;
     }
 
-    public Note[] getNotes() {
-        return notes;
+    public Nota[] getNotes() {
+        return notas;
     }
 
-    public void setNotes(Note[] notes) {
-        this.notes = notes;
+    public void setNotes(Nota[] notas) {
+        this.notas = notas;
     }
 }

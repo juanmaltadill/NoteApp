@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#7C64BFFB"
-    tools:context=".NuevaNotaActivity">
+    tools:context="com.iesmurgi.noteapp.NuevaNotaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

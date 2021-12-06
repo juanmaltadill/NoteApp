@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#7C64BFFB"
     android:orientation="vertical"
-    tools:context=".EditNoteActivity">
+    tools:context="com.iesmurgi.noteapp.EditarNotaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

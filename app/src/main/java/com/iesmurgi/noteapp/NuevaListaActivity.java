@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iesmurgi.noteapp.R;
 
 import java.util.ArrayList;
 
@@ -120,7 +119,7 @@ public class NuevaListaActivity extends AppCompatActivity {
         return this;
     }
     private void initSelectIcon(){
-        Intent intent = new Intent(this, SelectIconActivity.class);
+        Intent intent = new Intent(this, SeleccionarIconoActivity.class);
         startActivityForResult(intent, LAUNCH_ICON_ACTIVITY);
     }
     private void initHome(String cat){

@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.iesmurgi.noteapp.R;
+
 import java.util.List;
 
-public class NoteAdapter extends ArrayAdapter<Note> {
+public class NoteAdapter extends ArrayAdapter<Nota> {
 
     private int resourceLayout;
     private Context mContext;
@@ -18,7 +20,7 @@ public class NoteAdapter extends ArrayAdapter<Note> {
         return mContext;
     }
 
-    public NoteAdapter(Context context, int resource, List<Note> items) {
+    public NoteAdapter(Context context, int resource, List<Nota> items) {
         super(context, resource, items);
         this.resourceLayout = resource;
         this.mContext = context;
@@ -34,7 +36,7 @@ public class NoteAdapter extends ArrayAdapter<Note> {
             v = vi.inflate(resourceLayout, null);
         }
 
-        Note p = getItem(position);
+        Nota p = getItem(position);
 
         if (p != null) {
             TextView tt2 = (TextView) v.findViewById(R.id.tituloNota);

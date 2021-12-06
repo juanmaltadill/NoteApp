@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.iesmurgi.noteapp.R;
 
 public class AuthActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.NoteApp.MESSAGE";

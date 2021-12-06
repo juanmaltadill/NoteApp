@@ -1,21 +1,19 @@
-package com.juanmaltadill.noteapp;
-
-import android.graphics.drawable.Icon;
+package com.iesmurgi.noteapp;
 
 import java.util.ArrayList;
 
 public class Categoria {
     String nombre;
     String icon;
-    ArrayList<Note> notes;
+    ArrayList<Nota> notas;
 
     public Categoria(){
 
     }
-    public Categoria(String nombre, String icon, ArrayList<Note> notes){
+    public Categoria(String nombre, String icon, ArrayList<Nota> notas){
         this.nombre = nombre;
         this.icon = icon;
-        this.notes = notes;
+        this.notas = notas;
     }
 
     public String getNombre() {
@@ -34,11 +32,11 @@ public class Categoria {
         this.icon = icon;
     }
 
-    public ArrayList<Note> getNotes() {
-        return notes;
+    public ArrayList<Nota> getNotes() {
+        return notas;
     }
 
-    public void setNotes(ArrayList<Note> notes) {
-        this.notes = notes;
+    public void setNotes(ArrayList<Nota> notas) {
+        this.notas = notas;
     }
 }

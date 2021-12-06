@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,11 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iesmurgi.noteapp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class NotesListActivity extends AppCompatActivity {
+public class ListaNotasActivity extends AppCompatActivity {
 
     private ListView listview;
     private String userId;
@@ -40,9 +40,9 @@ public class NotesListActivity extends AppCompatActivity {
     private String categoria;
     private String copia;
     private String nota;
-    private ArrayList<Note> copiaNotas = new ArrayList<Note>();
-    private ArrayList<Note> viewNotas = new ArrayList<Note>();
-    private Note nuevaNota;
+    private ArrayList<Nota> copiaNotas = new ArrayList<Nota>();
+    private ArrayList<Nota> viewNotas = new ArrayList<Nota>();
+    private Nota nuevaNota;
     private String enviar;
     private int LAUNCH_SECOND_ACTIVITY = 1;
 
@@ -70,13 +70,13 @@ public class NotesListActivity extends AppCompatActivity {
                     copia = String.valueOf(task.getResult().getValue());
                     System.out.println("La variable copia es "+copia);
                     if(copia.startsWith("{")){
-                        copiaNotas.add(gson.fromJson(copia, Note.class));
+                        copiaNotas.add(gson.fromJson(copia, Nota.class));
                     }else{
-                        copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Note>>(){}.getType()));
+                        copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Nota>>(){}.getType()));
                     }
                     if(nota != null){
                         System.out.println("La nota creada es "+nota);
-                        nuevaNota = gson.fromJson(nota, Note.class);
+                        nuevaNota = gson.fromJson(nota, Nota.class);
                         copiaNotas.add(nuevaNota);
                     }
                     for(int i=0; i<copiaNotas.size(); i++){
@@ -102,14 +102,14 @@ public class NotesListActivity extends AppCompatActivity {
         });
 
     }
-    private void createView(ArrayList<Note> notas){
+    private void createView(ArrayList<Nota> notas){
         Collections.reverse(viewNotas);
-        NoteAdapter adapter = new NoteAdapter(NotesListActivity.this, R.layout.noteadapter_layout, viewNotas);
+        NoteAdapter adapter = new NoteAdapter(ListaNotasActivity.this, R.layout.noteadapter_layout, viewNotas);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Note nota = viewNotas.get(i);
+                Nota nota = viewNotas.get(i);
                 editNote(nota);
             }
         });
@@ -122,14 +122,14 @@ public class NotesListActivity extends AppCompatActivity {
             }
         });
     }
-    private void editNote(Note note){
-        Intent intent = new Intent(this, EditNoteActivity.class);
+    private void editNote(Nota nota){
+        Intent intent = new Intent(this, EditarNotaActivity.class);
         Collections.reverse(viewNotas);
         for(int i=0; i<viewNotas.size(); i++){
-            if(viewNotas.get(i) == note){
-                nota = gson.toJson(viewNotas.get(i));
-                System.out.println("el extra que se va a enviar desde noteslist es "+nota);
-                intent.putExtra("nota", nota);
+            if(viewNotas.get(i) == nota){
+                this.nota = gson.toJson(viewNotas.get(i));
+                System.out.println("el extra que se va a enviar desde noteslist es "+ this.nota);
+                intent.putExtra("nota", this.nota);
                 intent.putExtra("categoria", viewNotas.get(i).getCategoria());
             }
         }
@@ -216,8 +216,8 @@ public class NotesListActivity extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK){
                 String result = data.getStringExtra("result");
                 String categ = data.getStringExtra("categoria");
-                copiaNotas = gson.fromJson(result, new TypeToken<ArrayList<Note>>(){}.getType());
-                viewNotas = new ArrayList<Note>();
+                copiaNotas = gson.fromJson(result, new TypeToken<ArrayList<Nota>>(){}.getType());
+                viewNotas = new ArrayList<Nota>();
                 for(int i=0; i<copiaNotas.size(); i++){
                     if(copiaNotas.get(i).categoria.equals(categ)){
                         viewNotas.add(copiaNotas.get(i));

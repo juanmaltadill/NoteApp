@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,11 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
-
-import java.util.Date;
+import com.iesmurgi.noteapp.R;
 
 public class CrearNotaActivity extends AppCompatActivity {
-    private Note nota;
+    private Nota nota;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
@@ -54,7 +53,7 @@ public class CrearNotaActivity extends AppCompatActivity {
                         fechaVencimiento = et3.getText().toString();
                         System.out.println("La fecha de vencimiento es: "+fechaVencimiento);
                         vence = check.isChecked();
-                        nota = new Note();
+                        nota = new Nota();
                         nota.setTitulo(titulo);
                         nota.setContenido(contenido);
                         nota.setVence(vence);
@@ -71,9 +70,9 @@ public class CrearNotaActivity extends AppCompatActivity {
         Button createNoteBtn = findViewById(R.id.guardarNotaBtn);
         createNoteBtn.setOnClickListener(onClickListener);
     }
-    private void initNotes(String json,Note note){
-        Intent intent = new Intent(this, NotesListActivity.class);
-        intent.putExtra("categoria", note.categoria);
+    private void initNotes(String json, Nota nota){
+        Intent intent = new Intent(this, ListaNotasActivity.class);
+        intent.putExtra("categoria", nota.categoria);
         startActivity(intent);
     }
 }

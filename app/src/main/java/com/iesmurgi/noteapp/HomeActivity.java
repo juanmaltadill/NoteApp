@@ -1,10 +1,9 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iesmurgi.noteapp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
     private Categoria flag;
     private Categoria nuevaCategoria;
     private ArrayList<Categoria> copiaCategorias;
-    private ArrayList<Note> copiaNotas = new ArrayList<Note>();
+    private ArrayList<Nota> copiaNotas = new ArrayList<Nota>();
 // ...
 
     @Override
@@ -108,9 +107,9 @@ public class HomeActivity extends AppCompatActivity {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     copia = String.valueOf(task.getResult().getValue());
                     if(copia.startsWith("{")){
-                        copiaNotas.add(gson.fromJson(copia, Note.class));
+                        copiaNotas.add(gson.fromJson(copia, Nota.class));
                     }else{
-                        copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Note>>(){}.getType()));
+                        copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Nota>>(){}.getType()));
                     }
                 }
             }
@@ -165,7 +164,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
     private void initNotesList(String categoria){
-        Intent intent = new Intent(this, NotesListActivity.class);
+        Intent intent = new Intent(this, ListaNotasActivity.class);
         intent.putExtra("categoria", categoria);
         System.out.println("La categoria enviada es "+categoria);
         startActivity(intent);

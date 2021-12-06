@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
+import com.iesmurgi.noteapp.R;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.NoteApp.MESSAGE";
@@ -124,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
         dbRef.child("users").child(userId).child("name").setValue(name);
         dbRef.child("users").child(userId).child("phone").setValue(phone);
         Categoria cat = new Categoria();
-        Note nota = new Note();
+        Nota nota = new Nota();
         cat.setNombre("Sin categoria");
         cat.setIcon("engranaje");
         nota.setTitulo("Nota vacia");

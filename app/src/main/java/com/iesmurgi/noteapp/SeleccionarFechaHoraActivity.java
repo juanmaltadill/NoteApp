@@ -1,4 +1,4 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
 
+import com.iesmurgi.noteapp.R;
+
 import java.util.Calendar;
 
-public class SelectDateAndHourActivity extends AppCompatActivity implements View.OnClickListener{
+public class SeleccionarFechaHoraActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String PUBLIC_STATIC_STRING_IDENTIFIER = "Fecha y Hora";
     private Button guardar;
                     //VARIABLES PARA OBTENER LA FECHA DEL CALENDARIO

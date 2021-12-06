@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.juanmaltadill.noteapp">
+    package="com.iesmurgi.noteapp">
 
     <application
         android:allowBackup="true"
@@ -11,25 +11,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteApp">
         <activity
-            android:name=".EditNoteActivity"
+            android:name="com.iesmurgi.noteapp.EditarNotaActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectIconActivity"
+            android:name="com.iesmurgi.noteapp.SeleccionarIconoActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectDateAndHourActivity"
+            android:name="com.iesmurgi.noteapp.SeleccionarFechaHoraActivity"
             android:exported="false" />
         <activity
-            android:name=".CrearNotaActivity"
+            android:name="com.iesmurgi.noteapp.CrearNotaActivity"
             android:exported="false" />
         <activity
-            android:name=".NotesListActivity"
+            android:name="com.iesmurgi.noteapp.ListaNotasActivity"
             android:exported="false" />
-        <activity android:name=".NuevaNotaActivity" />
-        <activity android:name=".NuevaListaActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".AuthActivity">
+        <activity android:name="com.iesmurgi.noteapp.NuevaNotaActivity" />
+        <activity android:name="com.iesmurgi.noteapp.NuevaListaActivity" />
+        <activity android:name="com.iesmurgi.noteapp.SignUpActivity" />
+        <activity android:name="com.iesmurgi.noteapp.HomeActivity" />
+        <activity android:name="com.iesmurgi.noteapp.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

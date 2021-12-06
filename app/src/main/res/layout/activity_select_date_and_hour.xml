@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#7C64BFFB"
     android:orientation="vertical"
-    tools:context=".SelectDateAndHourActivity">
+    tools:context="com.iesmurgi.noteapp.SeleccionarFechaHoraActivity">
 
     <TextView
         android:id="@+id/textView"

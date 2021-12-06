@@ -1,6 +1,29 @@
 <resources>
     <string name="app_name">NoteApp</string>
-    <string name="action_search">buscar</string>
-    <string name="action_settings1">Nueva lista</string>
-    <string name="action_settings2">Nueva nota</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_settings1">Nueva categoría</string>
+    <string name="boton_registrar">Registrar</string>
+    <string name="boton_acceder">Acceder</string>
+    <string name="mensaje_signup">¿Aún no tienes una cuenta? Regístrate aquí</string>
+    <string name="nombre_tv">Nombre</string>
+    <string name="email_tv">Email</string>
+    <string name="telefono_tv">Telefono</string>
+    <string name="contraseña_tv">Contraseña</string>
+    <string name="confirmar_contraseña_tv">Confirmar contraseña</string>
+    <string name="categorias_tv">Categorías</string>
+    <string name="título_tv">Título</string>
+    <string name="notas_tv">Notas</string>
+    <string name="contenido_tv">Contenido</string>
+    <string name="contenido_hint">Introduzca aquí el contenido de su nota...</string>
+    <string name="vence_tv">¿Vence?</string>
+    <string name="fecha_vencimiento_tv">Fecha de vencimiento</string>
+    <string name="categoria_tv">Categoría</string>
+    <string name="editar_nota">Editar nota</string>
+    <string name="seleccionar_fecha_btn">Seleccionar fecha y hora</string>
+    <string name="elige_fecha_hora">Elige fecha y hora</string>
+    <string name="seleccionar_btn">Seleccionar</string>
+    <string name="guardar_btn">Guardar</string>
+    <string name="nueva_categoria">Nueva categoría</string>
+    <string name="icono_tv">Icono</string>
+    <string name="seleccionar_icono_btn">Seleccionar icono</string>
 </resources>

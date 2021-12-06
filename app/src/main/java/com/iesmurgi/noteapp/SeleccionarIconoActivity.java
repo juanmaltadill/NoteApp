@@ -1,19 +1,20 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.iesmurgi.noteapp.R;
+
 import java.util.ArrayList;
 
-public class SelectIconActivity extends AppCompatActivity implements View.OnClickListener {
+public class SeleccionarIconoActivity extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<ImageView> img = new ArrayList<ImageView>();
     private int id;
     private String imageId;

@@ -1,12 +1,8 @@
-package com.juanmaltadill.noteapp;
+package com.iesmurgi.noteapp;
 
 import android.graphics.drawable.Icon;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
-public class Note {
+public class Nota {
     int id;
     String titulo;
     String contenido;
@@ -15,10 +11,10 @@ public class Note {
     Icon icon;
     String categoria;
 
-    public Note(){
+    public Nota(){
 
     }
-    public Note(String titulo, String contenido, boolean vence, String fechaVencimiento, String categoria){
+    public Nota(String titulo, String contenido, boolean vence, String fechaVencimiento, String categoria){
         this.titulo = titulo;
         this.contenido = contenido;
         this.vence = vence;

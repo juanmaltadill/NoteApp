@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/login_bg"
+        android:background="@drawable/bg"
         android:backgroundTint="#7C64BFFB"
         android:gravity="center"
         android:orientation="vertical"

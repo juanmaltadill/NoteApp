@@ -65,33 +65,21 @@ public class ListaNotasActivity extends AppCompatActivity {
                 }
                 else {
                     categoria = getIntent().getExtras().getString("categoria");
-                    System.out.println("La categoria extra es "+categoria);
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     copia = String.valueOf(task.getResult().getValue());
-                    System.out.println("La variable copia es "+copia);
                     if(copia.startsWith("{")){
                         copiaNotas.add(gson.fromJson(copia, Nota.class));
                     }else{
                         copiaNotas.addAll(gson.fromJson(copia, new TypeToken<ArrayList<Nota>>(){}.getType()));
                     }
                     if(nota != null){
-                        System.out.println("La nota creada es "+nota);
                         nuevaNota = gson.fromJson(nota, Nota.class);
                         copiaNotas.add(nuevaNota);
                     }
-                    for(int i=0; i<copiaNotas.size(); i++){
-                        System.out.println("Indice "+i+" de CopiaNotas = "+copiaNotas.get(i));
-                    }
-
-                    System.out.println("Tamaño CopiaNotas "+copiaNotas.size());
                     enviar = gson.toJson(copiaNotas);
-                    System.out.println("El string de notas a enviar es "+ enviar);
                     dbRef.child("users").child(userId).child("notas").setValue(enviar);
                 }
                 for(int i=0; i<copiaNotas.size(); i++){
-                    boolean comprobar = copiaNotas.get(i).categoria.equals(categoria);
-                    System.out.println("Categoria copianotas "+copiaNotas.get(i).categoria + " Categoria extra "+categoria);
-                    System.out.println("Comprobacion " + comprobar);
                     if(copiaNotas.get(i).categoria.equals(categoria)){
                         viewNotas.add(copiaNotas.get(i));
                     }

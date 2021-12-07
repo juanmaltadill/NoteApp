@@ -32,11 +32,11 @@ import com.iesmurgi.noteapp.R;
 import java.util.ArrayList;
 
 public class EditarNotaActivity extends AppCompatActivity {
+
     private final int STATIC_INTEGER_VALUE = 1;
     private String titulo;
     private String contenido;
     private boolean vence;
-    private String id;
     private String fecha;
     private String cat;
     private Gson gson = new Gson();
@@ -51,7 +51,7 @@ public class EditarNotaActivity extends AppCompatActivity {
     private ArrayList<String> listaCategorias = new ArrayList<String>();
     private ArrayList<Nota> copiaNotas = new ArrayList<Nota>();
     private TextView tv2;
-    private EditText et1;
+    private TextView et1;
     private EditText et2;
     private Button btn1;
     private TextView tv1;
@@ -66,7 +66,7 @@ public class EditarNotaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
         this.setTitle(R.string.editar_nota);
-        et1 = findViewById(R.id.editarTituloNotaEt);
+        et1 = findViewById(R.id.tituloNotaTv);
         et2 = findViewById(R.id.editarContenidoNotaEt);
         btn1 = findViewById(R.id.editarFechaBtn);
         tv1 = findViewById(R.id.editarFechaNotaTv);
@@ -80,7 +80,6 @@ public class EditarNotaActivity extends AppCompatActivity {
         nota = gson.fromJson(extra, Nota.class);
         System.out.println(extra);
         et1.setText(nota.getTitulo());
-        System.out.println("El título de la nota a editar es: "+nota.getTitulo());
         et2.setText(nota.getContenido());
         check.setChecked(nota.vence);
         if(nota.vence){
@@ -93,8 +92,6 @@ public class EditarNotaActivity extends AppCompatActivity {
         if(nota.vence){
             tv1.setText(nota.getFechaVencimiento().toString());
         }
-
-
         dbRef.child("users").child(userId).child("categorias").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -144,11 +141,6 @@ public class EditarNotaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 flag = true;
-                if(et1.getText().toString().equals(null) || et1.getText().toString() == "" || et1.getText().toString().length()<1){
-                    flag = false;
-                    Toast toast=Toast.makeText(getApplicationContext(),"El título de la nota está vacío",Toast.LENGTH_LONG);
-                    toast.show();
-                }
                 titulo = et1.getText().toString();
                 contenido = et2.getText().toString();
                 vence = check.isChecked();
@@ -157,13 +149,13 @@ public class EditarNotaActivity extends AppCompatActivity {
                 }else{
                     fecha = null;
                 }
+
                 if (flag){
                     cat = categoria.getSelectedItem().toString();
                     Nota comparar = gson.fromJson(extra, Nota.class);
+
                     for(int i=0; i<copiaNotas.size(); i++){
-                        System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
                         if(copiaNotas.get(i).getTitulo().equals(comparar.getTitulo())){
-                            System.out.println("CopiaNotas editnote titulo "+copiaNotas.get(i).getTitulo());
                             copiaNotas.get(i).setTitulo(titulo);
                             copiaNotas.get(i).setContenido(contenido) ;
                             copiaNotas.get(i).setVence(vence);
@@ -173,7 +165,6 @@ public class EditarNotaActivity extends AppCompatActivity {
                                 copiaNotas.get(i).setFechaVencimiento(null);
                             }
                             copiaNotas.get(i).setCategoria(cat);
-                            System.out.println("CopiaNotas editnote nuevo titulo "+copiaNotas.get(i).getTitulo());
                         }
                     }
 
@@ -182,9 +173,6 @@ public class EditarNotaActivity extends AppCompatActivity {
                     initNotesList(json);
                     finish();
                 }
-
-
-
             }
         });
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -65,10 +65,6 @@ public class HomeActivity extends AppCompatActivity {
         dbRef.child("users").child(userId).child("categorias").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                while(!task.isComplete()){
-                    waitingDialog();
-                    task.isComplete();
-                }
                 if (!task.isSuccessful()) {
                     Log.e("firebase", "Error getting data", task.getException());
                 }
@@ -191,7 +187,6 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
                 enviar = gson.toJson(copiaNotas);
-                System.out.println("Desde el HomeActivity, las notas a enviar despues de eliminar categoria: "+enviar);
                 dbRef.child("users").child(userId).child("notas").setValue(enviar);
 
                 for(int i=0; i<copiaCategorias.size(); i++){

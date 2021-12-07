@@ -69,7 +69,6 @@ public class AuthActivity extends AppCompatActivity {
                             System.out.println("createUserWithEmail:failure");
                             Toast.makeText(AuthActivity.this, "El usuario o la contraseña no son correctos",
                                         Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });

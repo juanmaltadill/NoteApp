@@ -86,7 +86,6 @@ public class SignUpActivity extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance("https://noteapp-16399-default-rtdb.europe-west1.firebasedatabase.app").getReference();
     }
     private void createAccount(String email, String password){
-        System.out.println(email + password);
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -95,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             System.out.println("createUserWithEmail:success");
                             FirebaseUser user = auth.getCurrentUser();
-                            writeNewUser(auth.getCurrentUser().getUid().toString(), name, email, phone);
+                            writeNewUser(user.getUid().toString(), name, email, phone);
                             initAuth();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -107,7 +106,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 Toast.makeText(SignUpActivity.this, "El registro ha fallado",
                                         Toast.LENGTH_SHORT).show();
                             }
-
                         }
                     }
                 });
@@ -120,7 +118,6 @@ public class SignUpActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void writeNewUser(String userId, String name, String email, String phone) {
-        User user = new User(name, email);
         dbRef.child("users").child(userId).child("email").setValue(email);
         dbRef.child("users").child(userId).child("name").setValue(name);
         dbRef.child("users").child(userId).child("phone").setValue(phone);
@@ -130,6 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
         cat.setIcon("engranaje");
         nota.setTitulo("Nota vacia");
         nota.setCategoria(cat.getNombre());
+        nota.setContenido("");
         gson = new Gson();
         categoria = gson.toJson(cat);
         note = gson.toJson(nota);

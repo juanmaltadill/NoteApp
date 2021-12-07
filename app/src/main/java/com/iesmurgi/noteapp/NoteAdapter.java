@@ -54,7 +54,6 @@ public class NoteAdapter extends ArrayAdapter<Nota> {
                             break;
                         }
                     }
-
                 }
                 contenido = contenido + "...";
                 tt3.setText(contenido);
@@ -68,7 +67,6 @@ public class NoteAdapter extends ArrayAdapter<Nota> {
 
             }
         }
-
         return v;
     }
 
